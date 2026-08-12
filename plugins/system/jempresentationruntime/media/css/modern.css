@@ -1,0 +1,118 @@
+/**
+ * JEM Presentation — Modern profile v0.1
+ *
+ * Loaded only when the current JEM event resolves to profile "modern".
+ * The stylesheet deliberately keeps JEM's Standard HTML structure intact.
+ */
+
+/* Profile tokens */
+#jem.jem_event,
+.jem_event {
+    --jemp-modern-surface: #ffffff;
+    --jemp-modern-surface-soft: #f7f9fc;
+    --jemp-modern-border: #dfe5ec;
+    --jemp-modern-text: #1f2937;
+    --jemp-modern-muted: #667085;
+    --jemp-modern-accent: #245ea8;
+    --jemp-modern-radius: 12px;
+    --jemp-modern-shadow: 0 8px 24px rgba(15, 23, 42, .06);
+}
+
+/* Main event shell */
+#jem.jem_event,
+.jem_event {
+    color: var(--jemp-modern-text);
+}
+
+#jem.jem_event > h1,
+#jem.jem_event h1,
+.jem_event > h1,
+.jem_event h1 {
+    letter-spacing: -.025em;
+    line-height: 1.12;
+    margin-bottom: .75rem;
+}
+
+/* Existing JEM detail blocks become restrained cards, without changing markup */
+#jem.jem_event .jem-event-overview,
+#jem.jem_event .jem-event-details,
+#jem.jem_event .jem-event-description,
+#jem.jem_event .jem-event-venue,
+#jem.jem_event .jem-event-registration,
+#jem.jem_event .jem-event-links,
+#jem.jem_event .jem-custom-fields,
+.jem_event .jem-event-overview,
+.jem_event .jem-event-details,
+.jem_event .jem-event-description,
+.jem_event .jem-event-venue,
+.jem_event .jem-event-registration,
+.jem_event .jem-event-links,
+.jem_event .jem-custom-fields {
+    border-radius: var(--jemp-modern-radius);
+}
+
+/* JEM's common details definition list */
+#jem.jem_event .jem-dl,
+.jem_event .jem-dl {
+    background: var(--jemp-modern-surface-soft);
+    border: 1px solid var(--jemp-modern-border);
+    border-radius: var(--jemp-modern-radius);
+    box-sizing: border-box;
+    padding: 1rem 1.1rem;
+}
+
+#jem.jem_event .jem-dl dt,
+.jem_event .jem-dl dt {
+    color: var(--jemp-modern-muted);
+    font-weight: 600;
+}
+
+#jem.jem_event .jem-dl dd,
+.jem_event .jem-dl dd {
+    color: var(--jemp-modern-text);
+}
+
+/* Images */
+#jem.jem_event .jem-event-overview-media img,
+#jem.jem_event .flyerimage img,
+.jem_event .jem-event-overview-media img,
+.jem_event .flyerimage img {
+    border-radius: var(--jemp-modern-radius);
+}
+
+/* Existing JEM headings */
+#jem.jem_event h2,
+#jem.jem_event h3,
+.jem_event h2,
+.jem_event h3 {
+    color: var(--jemp-modern-text);
+    letter-spacing: -.015em;
+}
+
+/* Existing links/buttons stay recognisably Joomla/JEM, but get a softer profile */
+#jem.jem_event a:not(.btn),
+.jem_event a:not(.btn) {
+    text-decoration-thickness: .08em;
+    text-underline-offset: .16em;
+}
+
+#jem.jem_event .btn,
+.jem_event .btn {
+    border-radius: 8px;
+}
+
+/* Give the existing event content more breathing room */
+#jem.jem_event .jem-event-description,
+#jem.jem_event .description,
+.jem_event .jem-event-description,
+.jem_event .description {
+    line-height: 1.65;
+}
+
+/* Responsive: never force a desktop structure */
+@media (max-width: 767.98px) {
+    #jem.jem_event .jem-dl,
+    .jem_event .jem-dl {
+        padding: .85rem;
+    }
+}

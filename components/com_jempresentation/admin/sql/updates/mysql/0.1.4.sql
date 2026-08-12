@@ -1,0 +1,3 @@
+-- JEM Presentation v0.1.4
+-- No database schema change.
+-- Adds a Joomla custom form field for selecting JEM events.

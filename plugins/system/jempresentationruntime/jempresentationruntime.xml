@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+    <name>PLG_SYSTEM_JEMPRESENTATIONRUNTIME</name>
+    <author>Koelman Labs</author>
+    <creationDate>2026-08-10</creationDate>
+    <license>GNU General Public License version 3 or later</license>
+    <version>0.1.8</version>
+    <description>PLG_SYSTEM_JEMPRESENTATIONRUNTIME_XML_DESCRIPTION</description>
+
+    <namespace path="src">KoelmanLabs\Plugin\System\JemPresentationRuntime</namespace>
+
+    <files>
+        <folder plugin="jempresentationruntime">services</folder>
+        <folder>src</folder>
+        <folder>language</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_system_jempresentationruntime.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_jempresentationruntime.sys.ini</language>
+        <language tag="nl-NL">language/nl-NL/plg_system_jempresentationruntime.ini</language>
+        <language tag="nl-NL">language/nl-NL/plg_system_jempresentationruntime.sys.ini</language>
+    </languages>
+
+    <media destination="plg_system_jempresentationruntime" folder="media">
+        <folder>css</folder>
+    </media>
+</extension>

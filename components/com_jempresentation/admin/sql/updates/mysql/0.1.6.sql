@@ -1,0 +1,4 @@
+-- JEM Presentation v0.1.6
+-- No database schema change.
+-- Adds the central profile/layout registry, management metadata/preview,
+-- integration column and read-only integration status detection.

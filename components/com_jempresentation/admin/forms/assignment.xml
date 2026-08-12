@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="KoelmanLabs\Component\JemPresentation\Administrator\Field">
+    <fieldset name="details">
+        <field name="id" type="hidden"/>
+        <field name="context_type" type="hidden" default="event"/>
+
+        <field
+            name="context_id"
+            type="jemevent"
+            required="true"
+            label="COM_JEMPRESENTATION_EVENT"
+            description="COM_JEMPRESENTATION_EVENT_SELECT_DESC"
+            class="form-select"
+            layout="joomla.form.field.list-fancy-select"
+        />
+
+        <field name="profile" type="presentationprofile" required="true"
+               label="COM_JEMPRESENTATION_PROFILE"
+               class="form-select"
+               layout="joomla.form.field.list-fancy-select" />
+
+        <field name="layout" type="presentationlayout" required="true"
+               label="COM_JEMPRESENTATION_LAYOUT"
+               class="form-select"
+               layout="joomla.form.field.list-fancy-select" />
+    </fieldset>
+</form>

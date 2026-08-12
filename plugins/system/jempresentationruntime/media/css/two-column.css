@@ -1,0 +1,92 @@
+/** JEM Presentation — Two Column layout v0.1 */
+#jem.jem_event,.jem_event{--jemp-two-gap:clamp(1rem,2.5vw,1.6rem)}
+#jem.jem_event h1.componentheading,.jem_event h1.componentheading{margin-bottom:.9rem;font-size:clamp(2rem,4.2vw,3rem);line-height:1.08}
+#jem.jem_event .jem-event-overview-panel,.jem_event .jem-event-overview-panel{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(230px,.75fr);gap:var(--jemp-two-gap);align-items:start;margin-bottom:1.2rem;padding:clamp(1rem,2.2vw,1.4rem);border:1px solid var(--jemp-modern-border);border-radius:14px;background:var(--jemp-modern-surface);box-shadow:var(--jemp-modern-shadow)}
+#jem.jem_event .jem-event-overview-details,.jem_event .jem-event-overview-details{grid-column:1;min-width:0}
+#jem.jem_event .jem-event-overview-media,.jem_event .jem-event-overview-media{grid-column:2;align-self:start;width:100%;max-width:100%;margin:0;padding:0;border:0;background:transparent}
+#jem.jem_event .jem-event-overview-media img,#jem.jem_event .flyerimage img,.jem_event .jem-event-overview-media img,.jem_event .flyerimage img{display:block;width:auto;max-width:100%;height:auto;max-height:460px;margin-inline:auto;object-fit:contain;border-radius:12px}
+#jem.jem_event .jem-event-overview-details .jem-dl,.jem_event .jem-event-overview-details .jem-dl{display:grid;grid-template-columns:minmax(7.5rem,10rem) minmax(0,1fr);gap:.45rem 1rem;margin:0;padding:0;border:0;background:transparent}
+#jem.jem_event .jem-event-overview-details .jem-dl dt,#jem.jem_event .jem-event-overview-details .jem-dl dd,.jem_event .jem-event-overview-details .jem-dl dt,.jem_event .jem-event-overview-details .jem-dl dd{margin:0;padding:.18rem 0}
+#jem.jem_event .jem-event-description,#jem.jem_event .jem-event-venue,#jem.jem_event .jem-event-registration,#jem.jem_event .jem-event-links,.jem_event .jem-event-description,.jem_event .jem-event-venue,.jem_event .jem-event-registration,.jem_event .jem-event-links{margin-top:1rem;padding:clamp(1rem,2vw,1.35rem);border:1px solid var(--jemp-modern-border);border-radius:12px;background:var(--jemp-modern-surface)}
+#jem.jem_event .jem-event-overview-panel:not(:has(.jem-event-overview-media)),.jem_event .jem-event-overview-panel:not(:has(.jem-event-overview-media)){grid-template-columns:minmax(0,1fr)}
+@media (max-width:899.98px){#jem.jem_event .jem-event-overview-panel,.jem_event .jem-event-overview-panel{grid-template-columns:minmax(0,1fr)}#jem.jem_event .jem-event-overview-details,.jem_event .jem-event-overview-details{grid-column:1;grid-row:1}#jem.jem_event .jem-event-overview-media,.jem_event .jem-event-overview-media{grid-column:1;grid-row:2;max-width:520px;margin-inline:auto}}
+@media (max-width:599.98px){#jem.jem_event .jem-event-overview-panel,.jem_event .jem-event-overview-panel{padding:.85rem;border-radius:12px}#jem.jem_event .jem-event-overview-details .jem-dl,.jem_event .jem-event-overview-details .jem-dl{grid-template-columns:1fr;gap:.1rem}#jem.jem_event .jem-event-overview-details .jem-dl dd,.jem_event .jem-event-overview-details .jem-dl dd{margin-bottom:.5rem}#jem.jem_event .jem-event-overview-media,.jem_event .jem-event-overview-media{max-width:100%;margin-top:.65rem}}
+
+@media (max-width: 899.98px) {
+    #jem.jem_event .jem-event-overview-details,
+    .jem_event .jem-event-overview-details {
+        order: 1;
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        width: 100%;
+    }
+
+    #jem.jem_event .jem-event-overview-media,
+    .jem_event .jem-event-overview-media {
+        order: 2;
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        justify-self: center;
+        width: auto;
+        max-width: min(100%, 520px);
+        margin: .75rem auto 0;
+    }
+
+    #jem.jem_event .jem-event-overview-media img,
+    #jem.jem_event .flyerimage img,
+    .jem_event .jem-event-overview-media img,
+    .jem_event .flyerimage img {
+        width: auto;
+        max-width: 100%;
+        max-height: 52vh;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 599.98px) {
+    #jem.jem_event .jem-event-overview-media,
+    .jem_event .jem-event-overview-media {
+        max-width: 100%;
+        margin-top: .65rem;
+    }
+
+    #jem.jem_event .jem-event-overview-media img,
+    #jem.jem_event .flyerimage img,
+    .jem_event .jem-event-overview-media img,
+    .jem_event .flyerimage img {
+        max-height: 46vh;
+    }
+}
+
+@media (max-width: 899.98px) {
+    #jem.jem_event .jem-event-main-responsive.jem-event-overview-panel,
+    .jem_event .jem-event-main-responsive.jem-event-overview-panel {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-auto-flow: row !important;
+        align-items: start !important;
+    }
+
+    #jem.jem_event .jem-event-main-responsive > .jem-event-overview-details,
+    .jem_event .jem-event-main-responsive > .jem-event-overview-details {
+        display: block;
+        order: 1 !important;
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    #jem.jem_event .jem-event-main-responsive > .jem-event-overview-media,
+    .jem_event .jem-event-main-responsive > .jem-event-overview-media {
+        order: 2 !important;
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        justify-self: center !important;
+        float: none !important;
+        clear: both !important;
+        width: auto !important;
+        max-width: min(100%, 520px) !important;
+        margin: .75rem auto 0 !important;
+    }
+}

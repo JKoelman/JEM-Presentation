@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config addfieldprefix="KoelmanLabs\Component\JemPresentation\Administrator\Field">
+    <fieldset name="basic" label="COM_JEMPRESENTATION_CONFIG_BASIC">
+        <field name="default_profile" type="presentationprofile" default="modern"
+               label="COM_JEMPRESENTATION_DEFAULT_PROFILE" />
+        <field name="default_layout" type="presentationlayout" default="standard"
+               label="COM_JEMPRESENTATION_DEFAULT_LAYOUT" />
+    </fieldset>
+</config>
