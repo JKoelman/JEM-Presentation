@@ -1,0 +1,21 @@
+# Build/release artifacts
+*.zip
+/build/
+/dist/
+
+# Playwright
+/node_modules/
+/playwright-report/
+/test-results/
+/blob-report/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+.env.*
+!.env.example
