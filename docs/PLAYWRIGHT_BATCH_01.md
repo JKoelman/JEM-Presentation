@@ -1,15 +1,27 @@
 # JEM Presentation — Playwright batch 01
 
-Status: PREPARED / LOCAL RUN PENDING
+Status: FIRST LOCAL RUN FAILED ON 0.1.6 / 0.1.6.1 RECHECK PENDING
 
 ## Baseline
 
 - Joomla 6
 - JEM 5.0.1
-- `com_jempresentation` 0.1.6
+- `com_jempresentation` 0.1.6.1
 - `plg_system_jempresentationruntime` 0.1.8
 - Cassiopeia primary reference template
 - JEM Playwright structure aligned with the v0.68.20.223 reference package
+
+## First local finding
+
+PW-ADM-001 failed on component 0.1.6 because the assignment list form did not contain Joomla's standard hidden `boxchecked` field. The Edit and Delete toolbar buttons use list-selection state and both raised the same `joomla-toolbar-button` page error during initialization.
+
+Component 0.1.6.1 restores:
+
+```html
+<input type="hidden" name="boxchecked" value="0">
+```
+
+No debug-monitor ignore was added. The real list-form contract was fixed instead.
 
 ## Test files
 
@@ -74,8 +86,6 @@ Frontend runtime tests use the existing JEM debug monitor and validate the condi
 - local administrator credentials remain owned by the existing PlanjeSuiteTests configuration;
 - Event Hub/uddeIM/Community Builder implementation assumptions are not dependencies of this batch.
 
-## Expected current result
+## Expected next result
 
-`PENDING` until run locally against the installed v0.1.6 / runtime v0.1.8 baseline.
-
-Expected healthy run: `13 passed` with no `[JEM Presentation cleanup]` warnings.
+Re-run the same 13-test batch against component 0.1.6.1. Expected healthy result: `13 passed` with no `[JEM Presentation cleanup]` warnings.
