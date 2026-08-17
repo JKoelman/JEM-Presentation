@@ -1,11 +1,17 @@
-# JEM Presentation v0.1.6
+# JEM Presentation v0.1.6.1
+
+## Hotfix 0.1.6.1
+
+- Restores the standard Joomla list-form `boxchecked` hidden field on the assignment list.
+- Prevents Joomla toolbar list-selection buttons (Edit/Delete) from throwing a browser `pageerror` during initialization.
+- No database schema, runtime plugin or bridge changes.
 
 ## Scope
 
 Management/registry release. No JEM core changes and no database schema changes.
 Existing assignment values remain canonical and unchanged.
 
-## Added
+## Added in 0.1.6
 
 - Central `PresentationRegistry` for profile/layout metadata.
 - Assignment profile and layout selectors now consume that registry.
@@ -24,7 +30,7 @@ Existing assignment values remain canonical and unchanged.
   - native JEM presentation API status.
 - Existing custom JEM overrides are never modified or overwritten.
 
-## Registry status in this release
+## Registry status
 
 ### Profile
 
@@ -41,7 +47,7 @@ Existing assignment values remain canonical and unchanged.
 - `route` — planned, not implemented by the runtime yet
 
 The planned values remain visible because they already existed in v0.1.5 and may
-already be stored. v0.1.6 therefore does not silently rewrite or delete them;
+already be stored. The component therefore does not silently rewrite or delete them;
 the UI makes their runtime status explicit instead.
 
 ## Important
