@@ -10,7 +10,7 @@ Early development / proof-of-concept.
 
 Current source baseline:
 
-- `com_jempresentation` **0.1.6** — management, assignments and central profile/layout registry
+- `com_jempresentation` **0.1.6.1** — management, assignments and central profile/layout registry; toolbar list-selection hotfix
 - `plg_system_jempresentationruntime` **0.1.8** — runtime resolver and conditional presentation assets
 - Cassiopeia Thin Override Bridge **0.1.0** — optional compatibility fallback for the current Hero image position
 
