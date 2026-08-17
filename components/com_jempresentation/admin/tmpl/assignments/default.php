@@ -27,6 +27,7 @@ use KoelmanLabs\Component\JemPresentation\Administrator\Registry\PresentationReg
         </table>
     </div>
     <?php if ($this->pagination) : ?><?php echo $this->pagination->getListFooter(); ?><?php endif; ?>
+    <input type="hidden" name="boxchecked" value="0">
     <input type="hidden" name="task" value="">
     <?php echo HTMLHelper::_('form.token'); ?>
 </form>
