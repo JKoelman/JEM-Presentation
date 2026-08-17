@@ -1,6 +1,6 @@
 # JEM Presentation — Playwright batch 01
 
-Status: FIRST LOCAL RUN FAILED ON 0.1.6 / 0.1.6.1 RECHECK PENDING
+Status: **PASS — 13/13 on local Joomla 6 test environment**
 
 ## Baseline
 
@@ -11,17 +11,25 @@ Status: FIRST LOCAL RUN FAILED ON 0.1.6 / 0.1.6.1 RECHECK PENDING
 - Cassiopeia primary reference template
 - JEM Playwright structure aligned with the v0.68.20.223 reference package
 
-## First local finding
+## Confirmed local result
 
-PW-ADM-001 failed on component 0.1.6 because the assignment list form did not contain Joomla's standard hidden `boxchecked` field. The Edit and Delete toolbar buttons use list-selection state and both raised the same `joomla-toolbar-button` page error during initialization.
+- Date: 2026-08-17
+- Workers: 1
+- Result: `13 passed`
+- Duration: 1.4 minutes
+- No `[JEM Presentation cleanup]` warning was present in the supplied run output.
 
-Component 0.1.6.1 restores:
+## First local finding and fix
+
+The initial run on component 0.1.6 failed PW-ADM-001 because the assignment list form did not contain Joomla's standard hidden `boxchecked` field. The Edit and Delete toolbar buttons use list-selection state and both raised the same `joomla-toolbar-button` page error during initialization.
+
+Component 0.1.6.1 restored:
 
 ```html
 <input type="hidden" name="boxchecked" value="0">
 ```
 
-No debug-monitor ignore was added. The real list-form contract was fixed instead.
+No debug-monitor ignore was added. The real list-form contract was fixed instead. The complete batch was then rerun and passed 13/13.
 
 ## Test files
 
@@ -30,19 +38,19 @@ No debug-monitor ignore was added. The real list-form contract was fixed instead
 
 ## Scope — 13 tests
 
-1. assignment list health and Integration column;
-2. existing canonical `modern + standard` assignment values;
-3. Standard registry metadata and schematic preview;
-4. Hero live metadata/preview change without submit;
-5. Two Column live metadata/preview and no bridge requirement;
-6. planned Sports profile warning;
-7. planned Route layout warning and preview;
-8. canonical Hero ID persistence and Bridge list route;
-9. duplicate-new-form attempt keeps one event assignment and reuses the existing record;
-10. read-only runtime/template/bridge/native-API status;
-11. Standard runtime assets plus strict unassigned-event isolation;
-12. Hero runtime assets;
-13. Two Column runtime assets.
+1. assignment list health and Integration column — PASS;
+2. existing canonical `modern + standard` assignment values — PASS;
+3. Standard registry metadata and schematic preview — PASS;
+4. Hero live metadata/preview change without submit — PASS;
+5. Two Column live metadata/preview and no bridge requirement — PASS;
+6. planned Sports profile warning — PASS;
+7. planned Route layout warning and preview — PASS;
+8. canonical Hero ID persistence and Bridge list route — PASS;
+9. duplicate-new-form attempt keeps one event assignment — PASS;
+10. read-only runtime/template/bridge/native-API status — PASS;
+11. Standard runtime assets plus strict unassigned-event isolation — PASS;
+12. Hero runtime assets — PASS;
+13. Two Column runtime assets — PASS.
 
 ## Autonomous fixtures
 
@@ -77,6 +85,8 @@ Frontend runtime tests use the existing JEM debug monitor and validate the condi
 - Two Column: `modern.css` + `two-column.css`;
 - unassigned event: no JEM Presentation runtime stylesheet.
 
+All covered runtime routes passed the batch health checks.
+
 ## Safety
 
 - no JEM core changes;
@@ -86,6 +96,6 @@ Frontend runtime tests use the existing JEM debug monitor and validate the condi
 - local administrator credentials remain owned by the existing PlanjeSuiteTests configuration;
 - Event Hub/uddeIM/Community Builder implementation assumptions are not dependencies of this batch.
 
-## Expected next result
+## Batch conclusion
 
-Re-run the same 13-test batch against component 0.1.6.1. Expected healthy result: `13 passed` with no `[JEM Presentation cleanup]` warnings.
+The v0.1.6 management/registry functionality plus the v0.1.6.1 assignment-list toolbar hotfix now form a confirmed green regression baseline. The next development batch can build on this state.
