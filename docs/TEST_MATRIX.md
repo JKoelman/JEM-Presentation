@@ -6,7 +6,7 @@ This file tracks the regression baseline for JEM Presentation. New or changed Pl
 
 | Part | Version | Purpose |
 |---|---:|---|
-| `com_jempresentation` | 0.1.6 | Management, assignments, registry, preview and integration status |
+| `com_jempresentation` | 0.1.6.1 | Management, assignments, registry, preview and integration status; assignment-list toolbar hotfix |
 | `plg_system_jempresentationruntime` | 0.1.8 | Event resolver and conditional runtime assets |
 | Cassiopeia Thin Override Bridge | 0.1.0 | Optional Hero compatibility POC |
 
@@ -21,11 +21,11 @@ This file tracks the regression baseline for JEM Presentation. New or changed Pl
 | MAN-TWO-899 | Modern + Two Column | One column at 899 × 800; event data before artwork | PASS |
 | MAN-TWO-390 | Modern + Two Column | Responsive one-column layout at 390 × 844 | PASS |
 
-## Playwright — v0.1.6 management regression
+## Playwright — v0.1.6 / v0.1.6.1 management regression
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| PW-ADM-001 | Assignment list opens | No technical/PHP/JS/console error | PENDING |
+| PW-ADM-001 | Assignment list opens | No technical/PHP/JS/console error | FAIL on 0.1.6: missing `boxchecked` caused two Joomla toolbar `pageerror`s; 0.1.6.1 fix PENDING recheck |
 | PW-ADM-002 | Existing assignment opens | Existing canonical values load correctly | PENDING |
 | PW-ADM-003 | Standard metadata | Description, Native integration and `Bridge not required` shown | PENDING |
 | PW-ADM-004 | Hero metadata | Hero preview and current bridge requirement shown | PENDING |
