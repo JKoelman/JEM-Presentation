@@ -12,9 +12,10 @@ This file records public regression coverage and locally confirmed results. The 
 
 ## Latest confirmed local baseline
 
+- 2026-08-18: v0.1.7 frontend layout regression — **8 passed**, 1 worker, 1.4 minutes.
 - 2026-08-18: v0.1.7 management + runtime regression — **13 passed**, 1 worker, 1.4 minutes.
 - 2026-08-18: v0.1.7 management hardening regression — **8 passed**, 1 worker, 1.2 minutes.
-- Combined confirmed v0.1.7 baseline: **21/21 passed**.
+- Combined confirmed v0.1.7 baseline: **29/29 passed**.
 
 ## Local regression — v0.1.7 hardening
 
@@ -33,18 +34,18 @@ This file records public regression coverage and locally confirmed results. The 
 
 Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
 
-## Planned local regression — v0.1.7 frontend layout contract
+## Local regression — v0.1.7 frontend layout contract
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| FRONT-001 | Standard frontend structure | Native right-image JEM structure and event toolbar remain intact | PENDING |
-| FRONT-002 | Two Column at 900 px | Details and media render in separate desktop columns | PENDING |
-| FRONT-003 | Two Column at 899 px | Details stack above media at the responsive breakpoint | PENDING |
-| FRONT-004 | Two Column at 390 px | Single-column detail/media flow stays contained without Presentation overflow | PENDING |
-| FRONT-005 | JEM details/compact toggle | Native JEM detail-mode toggle remains functional under Two Column | PENDING |
-| FRONT-006 | Hero bridge/fallback | Available bridge uses JEM header-image position; missing bridge degrades without technical failure | PENDING |
-| FRONT-007 | Hero at 390 px | Header image or fallback media remains contained on mobile | PENDING |
-| FRONT-008 | Functional preservation | Standard/Hero/Two Column preserve JEM toolbar, online-meeting action and the same registration/attendee visibility contract | PENDING |
+| FRONT-001 | Standard frontend structure | Native right-image JEM structure and event toolbar remain intact | PASS |
+| FRONT-002 | Two Column at 900 px | Details and media render in separate desktop columns | PASS |
+| FRONT-003 | Two Column at 899 px | Details stack above media at the responsive breakpoint | PASS |
+| FRONT-004 | Two Column at 390 px | Single-column detail/media flow stays contained without Presentation overflow | PASS |
+| FRONT-005 | JEM details/compact toggle | Native JEM detail-mode toggle remains functional under Two Column | PASS |
+| FRONT-006 | Hero bridge/fallback | Available bridge uses JEM header-image position; missing bridge degrades without technical failure | PASS |
+| FRONT-007 | Hero at 390 px | Header image or fallback media remains contained on mobile | PASS |
+| FRONT-008 | Functional preservation | Standard/Hero/Two Column preserve JEM toolbar, online-meeting action and the same registration/attendee visibility contract | PASS |
 
 The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
 
@@ -57,7 +58,7 @@ The frontend fixture uses JEM's own administrator UI to create the event, upload
 - 0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; the full local management/runtime baseline then passed 13/13.
 - The first 0.1.7 orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The test helper was corrected; the component orphan rendering was unchanged. The complete v0.1.7 hardening regression then passed 8/8 on 2026-08-18.
 - The first v0.1.7 management/runtime rerun exposed three outdated v0.1.6 UI assumptions: planned Sports and Route values were still actively selected and an already assigned event was reselected. The regression suite was aligned with the v0.1.7 contract; the component was unchanged. The full management/runtime regression then passed 13/13 on 2026-08-18.
-- The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The local helper now resolves the canonical stored filename through JEM's own image gallery before linking it to the event; frontend layout recheck remains pending.
+- The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The helper was corrected to resolve JEM's canonical stored filename through its own image gallery; the complete frontend layout regression then passed 8/8 on 2026-08-18.
 
 ## Repository policy
 
