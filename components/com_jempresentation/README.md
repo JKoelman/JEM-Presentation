@@ -7,6 +7,7 @@ ACL configuration completion release for Joomla 6 + JEM 5.0.1. No JEM core chang
 - Component Options exposes Joomla's native Permissions panel for `core.admin`, `core.manage`, `core.create`, `core.edit` and `core.delete`.
 - The assignment list exposes the standard **Options** toolbar action only to users with `core.admin`.
 - Direct administrator access to JEM Presentation is guarded by `core.manage` at the display-controller boundary.
+- Assignment add/edit/delete authorization also requires `core.manage`, preventing direct task-route bypasses when mutation rights are configured separately.
 
 ## Existing v0.1.7 hardening retained
 
