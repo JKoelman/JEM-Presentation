@@ -27,7 +27,7 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 
 ## Management / ACL
 
-The component uses Joomla component permissions for `core.admin`, `core.manage`, `core.create`, `core.edit` and `core.delete`. Version 0.1.8 adds the native Permissions panel in Component Options, exposes Options only to `core.admin`, and guards the direct administrator component entry with `core.manage`.
+The component uses Joomla component permissions for `core.admin`, `core.manage`, `core.create`, `core.edit` and `core.delete`. Version 0.1.8 adds the native Permissions panel in Component Options, exposes Options only to `core.admin`, and makes `core.manage` a required boundary for both direct component access and assignment add/edit/delete operations.
 
 ## Validation status
 
