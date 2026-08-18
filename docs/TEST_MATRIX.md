@@ -1,5 +1,7 @@
 # JEM Presentation Test Matrix
 
+This file records public regression coverage and locally confirmed results. The Playwright implementation, local configuration, traces, screenshots and reports are intentionally kept outside this public repository.
+
 ## Source baseline
 
 | Part | Version | Purpose |
@@ -10,26 +12,34 @@
 
 ## Latest confirmed local baseline
 
-- 2026-08-17: batch 01 `jem-presentation-v0-1-6-admin-runtime.spec.js` — **13 passed**, 1 worker, 1.4 minutes, component 0.1.6.1.
-- v0.1.7 changes management hardening, so batch 01 is PENDING recheck on 0.1.7.
+- 2026-08-17: management + runtime baseline — **13 passed**, 1 worker, 1.4 minutes, component 0.1.6.1.
+- v0.1.7 changes management hardening, so that baseline is PENDING recheck on 0.1.7.
 
-## Playwright — batch 02 v0.1.7 hardening
+## Local regression — v0.1.7 hardening
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| PW-HARD-001 | Registry capabilities | Modern supports Standard/Hero/Two Column; planned profile/layout disabled | PENDING |
-| PW-HARD-002 | Assigned event selector state | Existing assigned event marked and disabled | PENDING |
-| PW-HARD-003 | Crafted duplicate-new save | Existing assignment reused, explicit message, no duplicate | PENDING |
-| PW-HARD-004 | Unknown profile POST | Server rejects unknown profile | PENDING |
-| PW-HARD-005 | Unsupported combination POST | Server rejects Modern + Route | PENDING |
-| PW-HARD-006 | Missing event POST | Server rejects non-existing JEM event ID | PENDING |
-| PW-HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PENDING |
-| PW-HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PENDING |
+| HARD-001 | Registry capabilities | Modern supports Standard/Hero/Two Column; planned profile/layout disabled | PENDING |
+| HARD-002 | Assigned event selector state | Existing assigned event marked and disabled | PENDING |
+| HARD-003 | Crafted duplicate-new save | Existing assignment reused, explicit message, no duplicate | PENDING |
+| HARD-004 | Unknown profile POST | Server rejects unknown profile | PENDING |
+| HARD-005 | Unsupported combination POST | Server rejects Modern + Route | PENDING |
+| HARD-006 | Missing event POST | Server rejects non-existing JEM event ID | PENDING |
+| HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PENDING recheck after local fixture cleanup correction |
+| HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PENDING |
 
 ## ACL follow-up
 
-`core.create`, `core.edit` and `core.delete` are now applied in component controllers/toolbars. A dedicated restricted-user permission matrix is planned.
+`core.create`, `core.edit` and `core.delete` are applied in component controllers/toolbars. A dedicated restricted-user permission matrix is planned.
 
 ## Regression history
 
-0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; full batch 01 then passed 13/13.
+- 0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; the full local management/runtime baseline then passed 13/13.
+- During the first 0.1.7 hardening run, orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The component orphan rendering itself was not changed; recheck remains pending.
+
+## Repository policy
+
+- No Playwright specs or helpers in this repository.
+- No traces, screenshots, HTML reports, test-results or authentication state in this repository.
+- No local Joomla credentials, passwords, tokens or session data in this repository.
+- Only compact, sanitized regression outcomes are recorded here.
