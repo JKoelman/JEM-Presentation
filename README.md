@@ -6,7 +6,7 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 
 ## Current source baseline
 
-- `com_jempresentation` **0.1.7** — management hardening, assignments, registry/capabilities, preview and integration diagnostics
+- `com_jempresentation` **0.1.8** — management hardening plus native Joomla ACL configuration
 - `plg_system_jempresentationruntime` **0.1.8** — runtime resolver and conditional presentation assets
 - Cassiopeia Thin Override Bridge **0.1.0** — optional Hero compatibility fallback
 
@@ -25,8 +25,12 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 - `sports`, `outdoor`, `festival` — planned
 - `route` — planned and not selectable for new assignments
 
-## v0.1.7 hardening
+## Management / ACL
 
-The component validates assignments server-side against the registry, preserves unchanged legacy values without allowing new unsupported combinations, marks already assigned JEM events, exposes orphaned assignments, applies Joomla ACL to management actions, and provides per-file Hero bridge diagnostics.
+The component uses Joomla component permissions for `core.admin`, `core.manage`, `core.create`, `core.edit` and `core.delete`. Version 0.1.8 adds the native Permissions panel in Component Options, exposes Options only to `core.admin`, and guards the direct administrator component entry with `core.manage`.
 
-See `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
+## Validation status
+
+The latest fully confirmed local baseline is component v0.1.7 with **29/29** regression tests passing. The v0.1.8 ACL configuration changes are pending their dedicated restricted-user regression.
+
+See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
