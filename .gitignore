@@ -3,11 +3,15 @@
 /build/
 /dist/
 
-# Playwright
+# Local/private Playwright suite and artifacts
+/tests/playwright/
+/playwright*.config.*
 /node_modules/
 /playwright-report/
 /test-results/
 /blob-report/
+/.auth/
+/storageState*.json
 
 # Editors / OS
 .vscode/
