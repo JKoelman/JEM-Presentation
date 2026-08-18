@@ -6,4 +6,16 @@
         <field name="default_layout" type="presentationlayout" default="standard"
                label="COM_JEMPRESENTATION_DEFAULT_LAYOUT" />
     </fieldset>
+
+    <fieldset name="permissions"
+              label="JCONFIG_PERMISSIONS_LABEL"
+              description="JCONFIG_PERMISSIONS_DESC">
+        <field name="rules"
+               type="rules"
+               label="JCONFIG_PERMISSIONS_LABEL"
+               validate="rules"
+               filter="rules"
+               component="com_jempresentation"
+               section="component" />
+    </fieldset>
 </config>
