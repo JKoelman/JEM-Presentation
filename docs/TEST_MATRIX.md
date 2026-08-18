@@ -10,13 +10,13 @@ This file records public regression coverage and locally confirmed results. The 
 | `plg_system_jempresentationruntime` | 0.1.8 | Event resolver and conditional runtime assets |
 | Cassiopeia Thin Override Bridge | 0.1.0 | Optional Hero compatibility POC |
 
-## Latest confirmed local status
+## Latest confirmed local baseline
 
+- 2026-08-19: v0.1.8 management/runtime + frontend + hardening recheck — **29 passed**, 1 worker, 4.6 minutes.
 - 2026-08-19: v0.1.8 ACL configuration + enforcement regression — **9 passed**, 1 worker, 2.6 minutes.
-- The previous fully confirmed v0.1.7 baseline remains **29/29 passed** across hardening, management/runtime and frontend-layout coverage.
-- A full v0.1.8 release baseline still requires those 29 existing regressions to be rerun against v0.1.8.
+- Combined confirmed v0.1.8 release baseline: **38/38 passed**.
 
-## Local regression — v0.1.7 hardening
+## Local regression — v0.1.8 hardening recheck
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
@@ -29,11 +29,13 @@ This file records public regression coverage and locally confirmed results. The 
 | HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PASS |
 | HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PASS |
 
-## Local regression — v0.1.7 management + runtime
+Confirmed 8/8 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19.
 
-Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
+## Local regression — v0.1.8 management + runtime recheck
 
-## Local regression — v0.1.7 frontend layout contract
+Confirmed 13/13 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
+
+## Local regression — v0.1.8 frontend layout recheck
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
@@ -46,7 +48,7 @@ Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonic
 | FRONT-007 | Hero at 390 px | Header image or fallback media remains contained on mobile | PASS |
 | FRONT-008 | Functional preservation | Standard/Hero/Two Column preserve JEM toolbar, online-meeting action and the same registration/attendee visibility contract | PASS |
 
-The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
+Confirmed 8/8 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19. The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
 
 ## Local regression — v0.1.8 ACL configuration and enforcement
 
@@ -74,6 +76,7 @@ Confirmed **9/9 on 2026-08-19**.
 - The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The helper was corrected to resolve JEM's canonical stored filename through its own image gallery; the complete frontend layout regression then passed 8/8 on 2026-08-18.
 - Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer.
 - The first v0.1.8 ACL run exposed a local Playwright helper mismatch: Joomla 6.1.2 persisted permission-select changes through `com_config&task=application.store&format=json`, while the helper waited for a `permissions.apply` response. The trace showed successful HTTP 200 ACL store calls. The helper was corrected; JEM Presentation production code was unchanged. The corrected ACL regression then passed 9/9 on 2026-08-19.
+- The existing 29 management/runtime, frontend and hardening regressions were rerun unchanged against the installed v0.1.8 component and all passed on 2026-08-19, establishing the complete 38/38 v0.1.8 release baseline.
 
 ## Repository policy
 
