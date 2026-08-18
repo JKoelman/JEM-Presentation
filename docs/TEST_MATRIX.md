@@ -12,9 +12,9 @@ This file records public regression coverage and locally confirmed results. The 
 
 ## Latest confirmed local baseline
 
+- 2026-08-18: v0.1.7 management + runtime regression — **13 passed**, 1 worker, 1.4 minutes.
 - 2026-08-18: v0.1.7 management hardening regression — **8 passed**, 1 worker, 1.2 minutes.
-- 2026-08-17: management + runtime baseline — **13 passed**, 1 worker, 1.4 minutes, component 0.1.6.1.
-- The 13-test management/runtime baseline remains PENDING recheck on component 0.1.7.
+- Combined confirmed v0.1.7 baseline: **21/21 passed**.
 
 ## Local regression — v0.1.7 hardening
 
@@ -29,6 +29,10 @@ This file records public regression coverage and locally confirmed results. The 
 | HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PASS |
 | HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PASS |
 
+## Local regression — v0.1.7 management + runtime
+
+Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
+
 ## ACL follow-up
 
 `core.create`, `core.edit` and `core.delete` are applied in component controllers/toolbars. A dedicated restricted-user permission matrix is planned.
@@ -37,6 +41,7 @@ This file records public regression coverage and locally confirmed results. The 
 
 - 0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; the full local management/runtime baseline then passed 13/13.
 - The first 0.1.7 orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The test helper was corrected; the component orphan rendering was unchanged. The complete v0.1.7 hardening regression then passed 8/8 on 2026-08-18.
+- The first v0.1.7 management/runtime rerun exposed three outdated v0.1.6 UI assumptions: planned Sports and Route values were still actively selected and an already assigned event was reselected. The regression suite was aligned with the v0.1.7 contract; the component was unchanged. The full management/runtime regression then passed 13/13 on 2026-08-18.
 
 ## Repository policy
 
