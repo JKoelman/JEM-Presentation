@@ -1,56 +1,22 @@
-# JEM Presentation v0.1.6.1
+# JEM Presentation v0.1.7
 
-## Hotfix 0.1.6.1
+Management hardening release for Joomla 6 + JEM 5.0.1. No JEM core changes and no database schema changes.
 
-- Restores the standard Joomla list-form `boxchecked` hidden field on the assignment list.
-- Prevents Joomla toolbar list-selection buttons (Edit/Delete) from throwing a browser `pageerror` during initialization.
-- No database schema, runtime plugin or bridge changes.
+## Added / hardened
 
-## Scope
+- Server-side validation uses PresentationRegistry as the canonical contract.
+- Referenced JEM event must exist; unknown or unsupported profile/layout changes are rejected.
+- Existing legacy/planned values remain preservable only when event + profile + layout stay unchanged.
+- Modern explicitly supports Standard, Hero and Two Column.
+- Planned profiles/layouts remain visible but are disabled for new choices.
+- Assigned JEM events are marked in the selector and disabled for normal duplicate selection.
+- Database uniqueness remains the final duplicate guard; crafted duplicate-new saves reuse the existing assignment with an explicit message.
+- Orphaned assignments are visible when the JEM event has been removed.
+- Management actions follow core.create, core.edit and core.delete.
+- Integration status identifies the default site template and reports each expected Hero bridge file separately.
 
-Management/registry release. No JEM core changes and no database schema changes.
-Existing assignment values remain canonical and unchanged.
+## Deferred
 
-## Added in 0.1.6
-
-- Central `PresentationRegistry` for profile/layout metadata.
-- Assignment profile and layout selectors now consume that registry.
-- Component options consume the same registry fields.
-- Dynamic assignment information panel with:
-  - selected profile status;
-  - layout description;
-  - integration route;
-  - bridge requirement;
-  - schematic preview.
-- Assignment list integration column and translated profile/layout labels.
-- Read-only integration status for:
-  - runtime plugin active/inactive/missing;
-  - active site template;
-  - Cassiopeia Hero bridge available/missing/incomplete/conflict;
-  - native JEM presentation API status.
-- Existing custom JEM overrides are never modified or overwritten.
-
-## Registry status
-
-### Profile
-
-- `modern` — available
-- `sports` — planned
-- `outdoor` — planned
-- `festival` — planned
-
-### Layouts
-
-- `standard` — confirmed, native JEM markup, no bridge
-- `hero` — functional POC, compatibility bridge for full image positioning
-- `two-column` — confirmed, native JEM markup + CSS Grid, no bridge
-- `route` — planned, not implemented by the runtime yet
-
-The planned values remain visible because they already existed in v0.1.5 and may
-already be stored. The component therefore does not silently rewrite or delete them;
-the UI makes their runtime status explicit instead.
-
-## Important
-
-JEM Presentation remains an extension layer. `com_jem` is not modified.
-Events without an assignment remain outside JEM Presentation.
+- Remote/AJAX JEM event picker for very large event datasets.
+- Optional pkg_jempresentation installer for component + runtime plugin; bridge remains opt-in and non-destructive.
+- Native JEM event-view hook to replace the Thin Override Bridge when JEM supports it.

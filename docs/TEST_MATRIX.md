@@ -1,76 +1,35 @@
 # JEM Presentation Test Matrix
 
-This file tracks the regression baseline for JEM Presentation. New or changed Playwright tests and locally confirmed results should be recorded here.
-
 ## Source baseline
 
 | Part | Version | Purpose |
 |---|---:|---|
-| `com_jempresentation` | 0.1.6.1 | Management, assignments, registry, preview and integration status; assignment-list toolbar hotfix |
+| `com_jempresentation` | 0.1.7 | Management hardening, registry capabilities, assignment validation and integration diagnostics |
 | `plg_system_jempresentationruntime` | 0.1.8 | Event resolver and conditional runtime assets |
 | Cassiopeia Thin Override Bridge | 0.1.0 | Optional Hero compatibility POC |
 
-## Latest local Playwright result
+## Latest confirmed local baseline
 
-- Date: 2026-08-17
-- Batch: `jem-presentation-v0-1-6-admin-runtime.spec.js`
-- Result: **13 passed**
-- Workers: 1
-- Duration: 1.4 minutes
-- Cleanup warnings in supplied run output: none
+- 2026-08-17: batch 01 `jem-presentation-v0-1-6-admin-runtime.spec.js` — **13 passed**, 1 worker, 1.4 minutes, component 0.1.6.1.
+- v0.1.7 changes management hardening, so batch 01 is PENDING recheck on 0.1.7.
 
-## Existing manual baseline
-
-| ID | Area | Expected | Status |
-|---|---|---|---|
-| MAN-STD-001 | Modern + Standard | JEM keeps its normal event HTML; presentation assets only | PASS (local baseline) |
-| MAN-HERO-001 | Modern + Hero | Runtime resolves Hero and the bridge can place the JEM image in header mode without database changes | PASS (functional POC) |
-| MAN-TWO-1280 | Modern + Two Column | Two columns at 1280 × 800 | PASS |
-| MAN-TWO-900 | Modern + Two Column | Two columns at 900 × 800 | PASS |
-| MAN-TWO-899 | Modern + Two Column | One column at 899 × 800; event data before artwork | PASS |
-| MAN-TWO-390 | Modern + Two Column | Responsive one-column layout at 390 × 844 | PASS |
-
-## Playwright — v0.1.6.1 management regression
+## Playwright — batch 02 v0.1.7 hardening
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| PW-ADM-001 | Assignment list opens | No technical/PHP/JS/console error | PASS on 0.1.6.1 |
-| PW-ADM-002 | Existing assignment opens | Existing canonical values load correctly | PASS |
-| PW-ADM-003 | Standard metadata | Description, Native integration and `Bridge not required` shown | PASS |
-| PW-ADM-004 | Hero metadata | Hero preview and current bridge requirement shown | PASS |
-| PW-ADM-005 | Two Column metadata | Two-column preview, Native integration and no bridge requirement shown | PASS |
-| PW-ADM-006 | Layout switch | Preview and metadata update without form submit | PASS |
-| PW-ADM-007 | Canonical ID persistence | Saving preserves the canonical layout ID and Hero persists as `hero` | PASS |
-| PW-ADM-008 | Assignment uniqueness | Existing event assignment remains unique when the new form targets the same event | PASS |
-| PW-ADM-009 | Integration column | Assignment list shows Native/Bridge route from registry | PASS |
-| PW-ADM-010 | Integration status | Runtime/template/bridge/native-API status renders read-only and safely | PASS |
-| PW-ADM-011 | Planned Sports profile | Planned profile is not presented as runtime-available | PASS |
-| PW-ADM-012 | Planned Route layout | Planned Route layout shows warning and its schematic preview | PASS |
+| PW-HARD-001 | Registry capabilities | Modern supports Standard/Hero/Two Column; planned profile/layout disabled | PENDING |
+| PW-HARD-002 | Assigned event selector state | Existing assigned event marked and disabled | PENDING |
+| PW-HARD-003 | Crafted duplicate-new save | Existing assignment reused, explicit message, no duplicate | PENDING |
+| PW-HARD-004 | Unknown profile POST | Server rejects unknown profile | PENDING |
+| PW-HARD-005 | Unsupported combination POST | Server rejects Modern + Route | PENDING |
+| PW-HARD-006 | Missing event POST | Server rejects non-existing JEM event ID | PENDING |
+| PW-HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PENDING |
+| PW-HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PENDING |
 
-## Playwright — runtime regression
+## ACL follow-up
 
-| ID | Test | Expected | Local result |
-|---|---|---|---|
-| PW-RUN-001 | Assigned Standard event | `modern.css` only; normal JEM rendering remains functional | PASS |
-| PW-RUN-002 | Assigned Hero event | `modern.css` + `hero.css`, no Two Column CSS, no technical error | PASS |
-| PW-RUN-003 | Assigned Two Column event | `modern.css` + `two-column.css`, no Hero CSS, no technical error | PASS |
-| PW-RUN-004 | Unassigned event | Completely normal JEM output; no Presentation runtime stylesheet | PASS |
-| PW-RUN-005 | Runtime health | No PHP, pageerror, console or failed-resource regression in covered runtime routes | PASS |
+`core.create`, `core.edit` and `core.delete` are now applied in component controllers/toolbars. A dedicated restricted-user permission matrix is planned.
 
-## Regression findings
+## Regression history
 
-### 2026-08-17 — assignment-list toolbar contract
-
-The first local run on component 0.1.6 failed PW-ADM-001 because the assignment-list form lacked Joomla's standard hidden `boxchecked` field. Both list-selection toolbar buttons raised the same `joomla-toolbar-button` page error during initialization.
-
-Component 0.1.6.1 added:
-
-```html
-<input type="hidden" name="boxchecked" value="0">
-```
-
-No debug-monitor ignore was introduced. The full 13-test batch was then rerun locally and passed.
-
-## Test data policy
-
-Playwright tests should create their own data where practical and clean it up afterwards. Tests must not depend on one permanent JEM event ID when the required fixture can be created by the test itself.
+0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; full batch 01 then passed 13/13.

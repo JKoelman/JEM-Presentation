@@ -1,0 +1,4 @@
+-- JEM Presentation v0.1.7
+-- No database schema change.
+-- Hardens assignment validation, registry capabilities, ACL-aware management,
+-- orphan-event visibility and integration diagnostics.

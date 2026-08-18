@@ -2,70 +2,31 @@
 
 Independent presentation and theme layer for **Joomla 6** and **JEM 5.0.1**.
 
-JEM Presentation is designed to enhance the presentation of individual JEM events without taking ownership of JEM event data, ACL, registrations, actions, or normal event rendering.
+JEM Presentation enhances individual JEM event presentation without taking ownership of JEM event data, ACL, registrations, actions, or normal event rendering.
 
-## Status
+## Current source baseline
 
-Early development / proof-of-concept.
-
-Current source baseline:
-
-- `com_jempresentation` **0.1.6.1** — management, assignments and central profile/layout registry; toolbar list-selection hotfix
+- `com_jempresentation` **0.1.7** — management hardening, assignments, registry/capabilities, preview and integration diagnostics
 - `plg_system_jempresentationruntime` **0.1.8** — runtime resolver and conditional presentation assets
-- Cassiopeia Thin Override Bridge **0.1.0** — optional compatibility fallback for the current Hero image position
+- Cassiopeia Thin Override Bridge **0.1.0** — optional Hero compatibility fallback
 
 ## Principles
 
-- JEM remains the owner of event data and business logic.
-- `com_jem` is not modified by this project.
-- Events without a JEM Presentation assignment keep the normal JEM output.
-- CSS/layout is preferred where the existing JEM markup is sufficient.
-- A minimal compatibility bridge is used only where JEM render state currently needs to be influenced.
-- Existing user/template overrides must never be overwritten automatically.
-- A future native JEM presentation/render extension point should replace the compatibility bridge without changing stored assignment IDs.
-
-## Repository structure
-
-```text
-components/
-  com_jempresentation/                Joomla administrator component
-
-plugins/
-  system/
-    jempresentationruntime/           Runtime resolver + conditional assets
-
-bridges/
-  cassiopeia/                         Optional Thin Override Bridge (POC)
-
-docs/
-  ARCHITECTURE.md                     Architecture and integration levels
-  TEST_MATRIX.md                      Regression and Playwright matrix
-```
+- JEM remains owner of event data and business logic.
+- `com_jem` is not modified by JEM Presentation.
+- Events without an assignment retain normal JEM output.
+- CSS/layout is preferred where existing JEM markup is sufficient.
+- Compatibility overrides are minimal, opt-in and never overwrite user overrides automatically.
+- A native JEM event-view presentation hook should replace the Hero bridge when available.
 
 ## Current registry
 
-### Profiles
+- `modern` — available; supports `standard`, `hero`, `two-column`
+- `sports`, `outdoor`, `festival` — planned
+- `route` — planned and not selectable for new assignments
 
-- `modern` — available
-- `sports` — planned
-- `outdoor` — planned
-- `festival` — planned
+## v0.1.7 hardening
 
-### Layouts
+The component validates assignments server-side against the registry, preserves unchanged legacy values without allowing new unsupported combinations, marks already assigned JEM events, exposes orphaned assignments, applies Joomla ACL to management actions, and provides per-file Hero bridge diagnostics.
 
-- `standard` — confirmed; native JEM markup; no bridge
-- `hero` — functional POC; compatibility bridge currently needed for full image positioning
-- `two-column` — confirmed; native JEM markup + CSS Grid; no bridge
-- `route` — planned; not yet implemented by the runtime
-
-Stored profile/layout IDs are canonical and language-independent.
-
-## Compatibility target
-
-- Joomla 6
-- JEM 5.0.1
-- Cassiopeia as the primary reference template
-
-## Development rule
-
-Before adding a feature, determine whether it belongs to a theme, a layout within existing JEM markup, a render-position integration, or true content composition. Avoid turning a presentation layer into a replacement JEM renderer.
+See `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.

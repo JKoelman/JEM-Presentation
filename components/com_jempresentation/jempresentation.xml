@@ -1,60 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" method="upgrade">
-    <name>COM_JEMPRESENTATION</name>
-    <element>com_jempresentation</element>
-    <author>Koelman Labs</author>
-    <creationDate>2026-08-17</creationDate>
-    <license>GNU General Public License version 3 or later</license>
-    <version>0.1.6.1</version>
-    <description>COM_JEMPRESENTATION_XML_DESCRIPTION</description>
-
+    <name>COM_JEMPRESENTATION</name><element>com_jempresentation</element><author>Koelman Labs</author><creationDate>2026-08-18</creationDate><license>GNU General Public License version 3 or later</license><version>0.1.7</version><description>COM_JEMPRESENTATION_XML_DESCRIPTION</description>
     <namespace path="src">KoelmanLabs\Component\JemPresentation</namespace>
-
-    <administration>
-        <menu view="assignments">COM_JEMPRESENTATION</menu>
-        <submenu>
-            <menu view="assignments">COM_JEMPRESENTATION_ASSIGNMENTS</menu>
-        </submenu>
-
-        <files folder="admin">
-            <folder>services</folder>
-            <folder>src</folder>
-            <folder>tmpl</folder>
-            <folder>forms</folder>
-            <folder>sql</folder>
-            <folder>language</folder>
-            <filename>access.xml</filename>
-            <filename>config.xml</filename>
-        </files>
-
-        <languages folder="admin">
-            <language tag="en-GB">language/en-GB/com_jempresentation.ini</language>
-            <language tag="en-GB">language/en-GB/com_jempresentation.sys.ini</language>
-            <language tag="nl-NL">language/nl-NL/com_jempresentation.ini</language>
-            <language tag="nl-NL">language/nl-NL/com_jempresentation.sys.ini</language>
-        </languages>
-    </administration>
-
-    <install>
-        <sql>
-            <file driver="mysql" charset="utf8mb4">sql/install.mysql.utf8.sql</file>
-        </sql>
-    </install>
-
-    <update>
-        <schemas>
-            <schemapath type="mysql">sql/updates/mysql</schemapath>
-        </schemas>
-    </update>
-
-    <uninstall>
-        <sql>
-            <file driver="mysql" charset="utf8mb4">sql/uninstall.mysql.utf8.sql</file>
-        </sql>
-    </uninstall>
-
-    <media destination="com_jempresentation" folder="media">
-        <folder>css</folder>
-        <folder>js</folder>
-    </media>
+    <administration><menu view="assignments">COM_JEMPRESENTATION</menu><submenu><menu view="assignments">COM_JEMPRESENTATION_ASSIGNMENTS</menu></submenu><files folder="admin"><folder>services</folder><folder>src</folder><folder>tmpl</folder><folder>forms</folder><folder>sql</folder><folder>language</folder><filename>access.xml</filename><filename>config.xml</filename></files><languages folder="admin"><language tag="en-GB">language/en-GB/com_jempresentation.ini</language><language tag="en-GB">language/en-GB/com_jempresentation.sys.ini</language><language tag="nl-NL">language/nl-NL/com_jempresentation.ini</language><language tag="nl-NL">language/nl-NL/com_jempresentation.sys.ini</language></languages></administration>
+    <install><sql><file driver="mysql" charset="utf8mb4">sql/install.mysql.utf8.sql</file></sql></install><update><schemas><schemapath type="mysql">sql/updates/mysql</schemapath></schemas></update><uninstall><sql><file driver="mysql" charset="utf8mb4">sql/uninstall.mysql.utf8.sql</file></sql></uninstall>
+    <media destination="com_jempresentation" folder="media"><folder>css</folder><folder>js</folder></media>
 </extension>
