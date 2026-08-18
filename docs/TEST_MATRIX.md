@@ -55,12 +55,12 @@ The frontend fixture uses JEM's own administrator UI to create the event, upload
 
 ## Planned local regression — v0.1.8 ACL configuration and enforcement
 
-Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions already declared in `access.xml` can now be configured through Component Options, the Options toolbar action requires `core.admin`, and the administrator entry route requires `core.manage`.
+Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions already declared in `access.xml` can now be configured through Component Options, the Options toolbar action requires `core.admin`, and `core.manage` is required for direct component access as well as assignment add/edit/delete authorization.
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
 | ACL-001 | Native Permissions configuration | Options exposes rules for core.admin/manage/create/edit/delete | PENDING |
-| ACL-002 | Manage boundary | User without core.manage cannot open direct Presentation administration | PENDING |
+| ACL-002 | Manage boundary | core.manage Denied blocks direct list/add/edit access even when mutation actions are Allowed | PENDING |
 | ACL-003 | Restricted toolbar | With manage only, New/Edit/Delete/Options follow their denied permissions | PENDING |
 | ACL-004 | Create allowed | core.create permits normal add flow while edit/delete stay unavailable | PENDING |
 | ACL-005 | Edit allowed | core.edit permits editing an existing assignment while create/delete stay unavailable | PENDING |
@@ -75,7 +75,7 @@ Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions 
 - The first 0.1.7 orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The test helper was corrected; the component orphan rendering was unchanged. The complete v0.1.7 hardening regression then passed 8/8 on 2026-08-18.
 - The first v0.1.7 management/runtime rerun exposed three outdated v0.1.6 UI assumptions: planned Sports and Route values were still actively selected and an already assigned event was reselected. The regression suite was aligned with the v0.1.7 contract; the component was unchanged. The full management/runtime regression then passed 13/13 on 2026-08-18.
 - The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The helper was corrected to resolve JEM's canonical stored filename through its own image gallery; the complete frontend layout regression then passed 8/8 on 2026-08-18.
-- Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator entry route did not enforce `core.manage`. Version 0.1.8 completes that configuration/enforcement layer; validation is pending.
+- Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer; validation is pending.
 
 ## Repository policy
 
