@@ -195,7 +195,14 @@ async function removeAssignment(page, assignmentId) {
 async function removeJemRecord(page, view, id, trashTask, removeTask) {
   if (!id) return;
 
-  for (const [state, task] of [['*', trashTask], ['-2', removeTask]]) {
+  // JEM uses different permanent-delete task names per manager.
+  // Keep the current JEM contract here so older callers cannot silently use
+  // the obsolete events.remove task and leave test fixtures behind.
+  const canonicalRemoveTask = view === 'events'
+    ? 'events.delete'
+    : (view === 'categories' ? 'categories.remove' : removeTask);
+
+  for (const [state, task] of [['*', trashTask], ['-2', canonicalRemoveTask]]) {
     await gotoStable(
       page,
       `${baseURL()}/administrator/index.php?option=com_jem&view=${view}&filter_state=${state}`
