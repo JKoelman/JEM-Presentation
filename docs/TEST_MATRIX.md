@@ -10,16 +10,11 @@ This file records public regression coverage and locally confirmed results. The 
 | `plg_system_jempresentationruntime` | 0.1.8 | Event resolver and conditional runtime assets |
 | Cassiopeia Thin Override Bridge | 0.1.0 | Optional Hero compatibility POC |
 
-## Latest confirmed local baseline
+## Latest confirmed local status
 
-The latest **fully confirmed** component baseline remains v0.1.7:
-
-- 2026-08-18: frontend layout regression — **8 passed**, 1 worker, 1.4 minutes.
-- 2026-08-18: management + runtime regression — **13 passed**, 1 worker, 1.4 minutes.
-- 2026-08-18: management hardening regression — **8 passed**, 1 worker, 1.2 minutes.
-- Combined confirmed v0.1.7 baseline: **29/29 passed**.
-
-Component v0.1.8 adds ACL configuration/UI completion and remains **PENDING local validation** until its restricted-user regression is run.
+- 2026-08-19: v0.1.8 ACL configuration + enforcement regression — **9 passed**, 1 worker, 2.6 minutes.
+- The previous fully confirmed v0.1.7 baseline remains **29/29 passed** across hardening, management/runtime and frontend-layout coverage.
+- A full v0.1.8 release baseline still requires those 29 existing regressions to be rerun against v0.1.8.
 
 ## Local regression — v0.1.7 hardening
 
@@ -53,21 +48,23 @@ Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonic
 
 The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
 
-## Planned local regression — v0.1.8 ACL configuration and enforcement
+## Local regression — v0.1.8 ACL configuration and enforcement
 
-Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions already declared in `access.xml` can now be configured through Component Options, the Options toolbar action requires `core.admin`, and `core.manage` is required for direct component access as well as assignment add/edit/delete authorization.
+Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions declared in `access.xml` are configurable through Component Options, the Options toolbar action requires `core.admin`, and `core.manage` is required for direct component access as well as assignment add/edit/delete authorization.
+
+Confirmed **9/9 on 2026-08-19**.
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| ACL-001 | Native Permissions configuration | Options exposes rules for core.admin/manage/create/edit/delete | PENDING |
-| ACL-002 | Manage boundary | core.manage Denied blocks direct list/add/edit access even when mutation actions are Allowed | PENDING |
-| ACL-003 | Restricted toolbar | With manage only, New/Edit/Delete/Options follow their denied permissions | PENDING |
-| ACL-004 | Create allowed | core.create permits normal add flow while edit/delete stay unavailable | PENDING |
-| ACL-005 | Edit allowed | core.edit permits editing an existing assignment while create/delete stay unavailable | PENDING |
-| ACL-006 | Delete allowed | core.delete permits deleting a dedicated assignment while create/edit stay unavailable | PENDING |
-| ACL-007 | Crafted create denied | Direct/crafted save cannot create an assignment without core.create | PENDING |
-| ACL-008 | Crafted edit denied | Direct/crafted save cannot mutate an assignment without core.edit | PENDING |
-| ACL-009 | Crafted delete denied | Direct list-task submission cannot delete an assignment without core.delete | PENDING |
+| ACL-001 | Native Permissions configuration | Options exposes rules for core.admin/manage/create/edit/delete | PASS |
+| ACL-002 | Manage boundary | core.manage Denied blocks direct list/add/edit access even when mutation actions are Allowed | PASS |
+| ACL-003 | Restricted toolbar | With manage only, New/Edit/Delete/Options follow their denied permissions | PASS |
+| ACL-004 | Create allowed | core.create permits normal add flow while edit/delete stay unavailable | PASS |
+| ACL-005 | Edit allowed | core.edit permits editing an existing assignment while create/delete stay unavailable | PASS |
+| ACL-006 | Delete allowed | core.delete permits deleting a dedicated assignment while create/edit stay unavailable | PASS |
+| ACL-007 | Crafted create denied | Direct/crafted save cannot create an assignment without core.create | PASS |
+| ACL-008 | Crafted edit denied | Direct/crafted save cannot mutate an assignment without core.edit | PASS |
+| ACL-009 | Crafted delete denied | Direct list-task submission cannot delete an assignment without core.delete | PASS |
 
 ## Regression history
 
@@ -75,8 +72,8 @@ Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions 
 - The first 0.1.7 orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The test helper was corrected; the component orphan rendering was unchanged. The complete v0.1.7 hardening regression then passed 8/8 on 2026-08-18.
 - The first v0.1.7 management/runtime rerun exposed three outdated v0.1.6 UI assumptions: planned Sports and Route values were still actively selected and an already assigned event was reselected. The regression suite was aligned with the v0.1.7 contract; the component was unchanged. The full management/runtime regression then passed 13/13 on 2026-08-18.
 - The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The helper was corrected to resolve JEM's canonical stored filename through its own image gallery; the complete frontend layout regression then passed 8/8 on 2026-08-18.
-- Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer; validation is pending.
-- The first v0.1.8 ACL run exposed a local Playwright helper mismatch: Joomla 6.1.2 persisted permission-select changes through `com_config&task=application.store&format=json`, while the helper waited for a `permissions.apply` response. The trace showed successful HTTP 200 ACL store calls. The helper was corrected; JEM Presentation production code was unchanged and ACL validation remains pending.
+- Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer.
+- The first v0.1.8 ACL run exposed a local Playwright helper mismatch: Joomla 6.1.2 persisted permission-select changes through `com_config&task=application.store&format=json`, while the helper waited for a `permissions.apply` response. The trace showed successful HTTP 200 ACL store calls. The helper was corrected; JEM Presentation production code was unchanged. The corrected ACL regression then passed 9/9 on 2026-08-19.
 
 ## Repository policy
 
