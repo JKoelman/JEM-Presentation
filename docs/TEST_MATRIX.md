@@ -33,6 +33,21 @@ This file records public regression coverage and locally confirmed results. The 
 
 Confirmed 13/13 on 2026-08-18. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
 
+## Planned local regression — v0.1.7 frontend layout contract
+
+| ID | Test | Expected | Local result |
+|---|---|---|---|
+| FRONT-001 | Standard frontend structure | Native right-image JEM structure and event toolbar remain intact | PENDING |
+| FRONT-002 | Two Column at 900 px | Details and media render in separate desktop columns | PENDING |
+| FRONT-003 | Two Column at 899 px | Details stack above media at the responsive breakpoint | PENDING |
+| FRONT-004 | Two Column at 390 px | Single-column detail/media flow stays contained without Presentation overflow | PENDING |
+| FRONT-005 | JEM details/compact toggle | Native JEM detail-mode toggle remains functional under Two Column | PENDING |
+| FRONT-006 | Hero bridge/fallback | Available bridge uses JEM header-image position; missing bridge degrades without technical failure | PENDING |
+| FRONT-007 | Hero at 390 px | Header image or fallback media remains contained on mobile | PENDING |
+| FRONT-008 | Functional preservation | Standard/Hero/Two Column preserve JEM toolbar, online-meeting action and the same registration/attendee visibility contract | PENDING |
+
+The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
+
 ## ACL follow-up
 
 `core.create`, `core.edit` and `core.delete` are applied in component controllers/toolbars. A dedicated restricted-user permission matrix is planned.
