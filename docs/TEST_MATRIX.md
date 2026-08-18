@@ -12,21 +12,22 @@ This file records public regression coverage and locally confirmed results. The 
 
 ## Latest confirmed local baseline
 
+- 2026-08-18: v0.1.7 management hardening regression — **8 passed**, 1 worker, 1.2 minutes.
 - 2026-08-17: management + runtime baseline — **13 passed**, 1 worker, 1.4 minutes, component 0.1.6.1.
-- v0.1.7 changes management hardening, so that baseline is PENDING recheck on 0.1.7.
+- The 13-test management/runtime baseline remains PENDING recheck on component 0.1.7.
 
 ## Local regression — v0.1.7 hardening
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| HARD-001 | Registry capabilities | Modern supports Standard/Hero/Two Column; planned profile/layout disabled | PENDING |
-| HARD-002 | Assigned event selector state | Existing assigned event marked and disabled | PENDING |
-| HARD-003 | Crafted duplicate-new save | Existing assignment reused, explicit message, no duplicate | PENDING |
-| HARD-004 | Unknown profile POST | Server rejects unknown profile | PENDING |
-| HARD-005 | Unsupported combination POST | Server rejects Modern + Route | PENDING |
-| HARD-006 | Missing event POST | Server rejects non-existing JEM event ID | PENDING |
-| HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PENDING recheck after local fixture cleanup correction |
-| HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PENDING |
+| HARD-001 | Registry capabilities | Modern supports Standard/Hero/Two Column; planned profile/layout disabled | PASS |
+| HARD-002 | Assigned event selector state | Existing assigned event marked and disabled | PASS |
+| HARD-003 | Crafted duplicate-new save | Existing assignment reused, explicit message, no duplicate | PASS |
+| HARD-004 | Unknown profile POST | Server rejects unknown profile | PASS |
+| HARD-005 | Unsupported combination POST | Server rejects Modern + Route | PASS |
+| HARD-006 | Missing event POST | Server rejects non-existing JEM event ID | PASS |
+| HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PASS |
+| HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PASS |
 
 ## ACL follow-up
 
@@ -35,7 +36,7 @@ This file records public regression coverage and locally confirmed results. The 
 ## Regression history
 
 - 0.1.6 lacked Joomla's hidden `boxchecked` field on the assignment list. 0.1.6.1 fixed the form contract; the full local management/runtime baseline then passed 13/13.
-- During the first 0.1.7 hardening run, orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The component orphan rendering itself was not changed; recheck remains pending.
+- The first 0.1.7 orphan verification exposed a local test-fixture cleanup mismatch (`events.remove` versus JEM's current `events.delete`). The test helper was corrected; the component orphan rendering was unchanged. The complete v0.1.7 hardening regression then passed 8/8 on 2026-08-18.
 
 ## Repository policy
 
