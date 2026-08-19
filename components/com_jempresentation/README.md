@@ -31,4 +31,6 @@ Integration diagnostics release for Joomla 6 + JEM 5.0.1. No JEM data ownership 
 
 ## Validation status
 
-The last fully confirmed normal release baseline before this component change is component v0.1.8 + runtime v0.1.9 with **38/38** regressions passing. The dedicated bridge-free native-hook POC also passed **5/5**. Component v0.1.9 requires its own Integration Status regression before it is promoted to the confirmed baseline.
+Component v0.1.9 + runtime v0.1.9 is the current fully confirmed normal release baseline with **38/38 regressions passing** on 2026-08-19 (1 worker, 4.9 minutes).
+
+The dedicated component v0.1.9 Integration Status regression also passed **5/5** (1 worker, 20.0 seconds), and the separate bridge-free native-hook POC passed **5/5** with both Cassiopeia Thin Override Bridge files disabled during the run and restored afterwards.
