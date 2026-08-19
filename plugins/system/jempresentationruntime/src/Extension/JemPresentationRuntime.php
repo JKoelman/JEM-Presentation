@@ -7,6 +7,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Log\Log;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\Event\Event;
 use Joomla\Event\SubscriberInterface;
 
 final class JemPresentationRuntime extends CMSPlugin implements SubscriberInterface
@@ -16,8 +17,9 @@ final class JemPresentationRuntime extends CMSPlugin implements SubscriberInterf
     public static function getSubscribedEvents(): array
     {
         return [
-            'onAfterRoute'        => 'onAfterRoute',
-            'onBeforeCompileHead' => 'onBeforeCompileHead',
+            'onAfterRoute'             => 'onAfterRoute',
+            'onBeforeCompileHead'      => 'onBeforeCompileHead',
+            'onJemPrepareEventView'    => 'onJemPrepareEventView',
         ];
     }
 
@@ -82,6 +84,7 @@ final class JemPresentationRuntime extends CMSPlugin implements SubscriberInterf
             $app->set('jempresentation.profile', (string) $assignment->profile);
             $app->set('jempresentation.layout', (string) $assignment->layout);
             $app->set('jempresentation.params', (string) ($assignment->params ?? ''));
+            $app->set('jempresentation.native_hook_used', false);
 
             $this->log(sprintf(
                 'event=%d | assignment=%d | profile=%s | layout=%s',
@@ -108,6 +111,58 @@ final class JemPresentationRuntime extends CMSPlugin implements SubscriberInterf
                 'error'
             );
         }
+    }
+
+    public function onJemPrepareEventView(Event $event): void
+    {
+        $app = $this->getApplication();
+
+        if (!$app->isClient('site')) {
+            return;
+        }
+
+        $profile = (string) $app->get('jempresentation.profile', '');
+        $layout  = (string) $app->get('jempresentation.layout', '');
+
+        if ($profile !== 'modern' || $layout !== 'hero') {
+            return;
+        }
+
+        $arguments = $event->getArguments();
+        $view = $arguments[0] ?? null;
+
+        if (!is_object($view) || !isset($view->item) || !is_object($view->item)) {
+            $this->log('native-hook=INVALID_VIEW', Log::WARNING);
+            return;
+        }
+
+        $resolvedEventId = (int) $app->get('jempresentation.event_id', 0);
+        $viewEventId = (int) ($view->item->id ?? 0);
+
+        if ($resolvedEventId <= 0 || $viewEventId <= 0 || $resolvedEventId !== $viewEventId) {
+            $this->log(sprintf(
+                'native-hook=EVENT_MISMATCH | resolved=%d | view=%d',
+                $resolvedEventId,
+                $viewEventId
+            ), Log::WARNING);
+            return;
+        }
+
+        $view->item->fullimage_layout = 'header';
+        $app->set('jempresentation.native_hook_used', true);
+
+        $this->log(sprintf(
+            'event=%d | native-hook=onJemPrepareEventView | hero-image-layout=header',
+            $viewEventId
+        ));
+
+        $this->debugMessage(
+            Text::sprintf(
+                'PLG_SYSTEM_JEMPRESENTATIONRUNTIME_DEBUG_NATIVE_HOOK_APPLIED',
+                $viewEventId
+            ),
+            'message'
+        );
     }
 
     public function onBeforeCompileHead(): void
@@ -209,7 +264,7 @@ final class JemPresentationRuntime extends CMSPlugin implements SubscriberInterf
             );
 
             Log::add(
-                'JEM Presentation Runtime v0.1.8 | ' . $message,
+                'JEM Presentation Runtime v0.1.9 | ' . $message,
                 $priority,
                 'jempresentationruntime'
             );
