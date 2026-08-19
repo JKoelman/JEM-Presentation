@@ -40,6 +40,8 @@ The component uses Joomla component permissions for `core.admin`, `core.manage`,
 
 The latest fully confirmed normal release baseline remains **component v0.1.9 + runtime v0.1.9: 38/38 passed** on 2026-08-19 (1 worker, 4.9 minutes).
 
-Runtime v0.1.9 also completed the dedicated **bridge-free native-hook POC: 5/5 passed**, and component v0.1.9 Integration Status completed **5/5**. Component v0.1.10 is the current source baseline and remains **PENDING** its dedicated adaptive-registry regression before the confirmed release baseline is promoted.
+Runtime v0.1.9 also completed the dedicated **bridge-free native-hook POC: 5/5 passed**, component v0.1.9 Integration Status completed **5/5**, and component v0.1.10 adaptive Hero metadata completed its dedicated **5/5 regression** on 2026-08-19 (1 worker, 18.2 seconds).
+
+The normal release baseline will be promoted to component v0.1.10 only after the historical Hero list assertion is aligned with the new native-first contract and the complete 38-test regression is rerun.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
