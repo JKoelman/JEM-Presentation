@@ -18,12 +18,13 @@ The latest fully confirmed normal release baseline remains **component v0.1.9 + 
 - 2026-08-19: component v0.1.9 Integration Status regression — **5 passed**, 1 worker, 20.0 seconds.
 - 2026-08-19: bridge-free runtime v0.1.9 native-hook POC — **5 passed**.
 - 2026-08-19: component v0.1.10 adaptive Hero registry regression — **5 passed**, 1 worker, 18.2 seconds.
+- 2026-08-19: updated management/registry/runtime regression against component v0.1.10 + runtime v0.1.9 — **13 passed**, 1 worker, 1.3 minutes.
 
-Component v0.1.10 is the current source baseline. Its dedicated adaptive-registry contract is confirmed, but the normal release baseline is not promoted until the historical management assertion is aligned with the native-first Hero contract and the complete 38-test release regression is rerun.
+Component v0.1.10 is the current source baseline. Its adaptive Hero contract and updated management suite are confirmed. The normal release baseline is promoted only after the complete 38-test release regression is rerun against component v0.1.10 + runtime v0.1.9.
 
 ## Normal release regression — component v0.1.9 + runtime v0.1.9
 
-The existing suite names retain their historical version labels, but the complete set was rerun unchanged against the installed v0.1.9 component and v0.1.9 runtime.
+The complete pre-v0.1.10 release set passed 38/38 against component v0.1.9 + runtime v0.1.9.
 
 | Group | Tests | Scope | Local result |
 |---|---:|---|---|
@@ -47,7 +48,13 @@ Confirmed **5/5 on 2026-08-19**, 1 worker, 18.2 seconds.
 | ADAPT-004 | Standard / Two Column isolation | Standard and Two Column remain `native` with bridge role `none` | PASS |
 | ADAPT-005 | Layout switching stability | Standard → Hero → Two Column updates only the selected layout metadata and keeps Integration Status healthy | PASS |
 
-Before the next normal-release rerun, the historical management assertion that expected Hero to display `Bridge` in the assignment list must be aligned with the new stable contract. On the tested hook-capable JEM installation the intended assignment-list marker is now `data-jempresentation-integration="native-hook"`.
+## Updated management / registry / runtime regression — component v0.1.10
+
+The historical Hero assignment-list assertion was updated from localized visible text `Bridge` to the stable v0.1.10 contract `data-jempresentation-integration="native-hook"`. No production behavior was changed by this test update.
+
+Confirmed **13/13 on 2026-08-19**, 1 worker, 1.3 minutes.
+
+Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column metadata and previews, planned choices, duplicate prevention, Integration Status, runtime asset isolation, and the updated Hero assignment-list native-hook marker.
 
 ## Component v0.1.9 Integration Status regression
 
@@ -99,6 +106,7 @@ With the tested local JEM hook present:
 - Component v0.1.9 added native-hook detection, stable `data-state`/`data-role` diagnostics and bridge-fallback classification. Its dedicated Integration Status regression passed 5/5.
 - The full 38-test normal release regression was rerun against **component v0.1.9 + runtime v0.1.9** and passed **38/38** on 2026-08-19.
 - Component v0.1.10 changes the Hero registry from static Bridge/POC metadata to adaptive native-first metadata while preserving all canonical assignment values. Its dedicated adaptive Hero regression passed **5/5** on 2026-08-19.
+- The historical management regression was aligned with the v0.1.10 native-hook assignment-list marker and then passed **13/13** against component v0.1.10 + runtime v0.1.9 on 2026-08-19.
 
 ## Repository policy
 
