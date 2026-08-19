@@ -7,8 +7,8 @@ This file records public regression coverage and locally confirmed results. The 
 | Part | Version | Purpose |
 |---|---:|---|
 | `com_jempresentation` | 0.1.8 | Management hardening, assignment validation, integration diagnostics and native Joomla ACL configuration |
-| `plg_system_jempresentationruntime` | 0.1.9 | Event resolver/assets plus native `onJemPrepareEventView` Hero-hook POC |
-| Cassiopeia Thin Override Bridge | 0.1.0 | Optional Hero compatibility fallback; native bridge-free replacement POC pending |
+| `plg_system_jempresentationruntime` | 0.1.9 | Event resolver/assets plus native `onJemPrepareEventView` Hero-hook support |
+| Cassiopeia Thin Override Bridge | 0.1.0 | Compatibility fallback; no longer technically required when the native JEM hook is present |
 
 ## Latest confirmed local baseline
 
@@ -18,7 +18,9 @@ The latest fully confirmed release baseline remains **component v0.1.8 + runtime
 - 2026-08-19: ACL configuration + enforcement regression — **9 passed**, 1 worker, 2.6 minutes.
 - Combined confirmed v0.1.8 release baseline: **38/38 passed**.
 
-Runtime v0.1.9 adds native JEM event-view hook support and remains **PENDING local bridge-free POC validation**.
+In addition, runtime v0.1.9 with a local JEM `onJemPrepareEventView` trigger completed the dedicated **bridge-free native-hook POC: 5/5 passed** on 2026-08-19. During that run both Cassiopeia Thin Override Bridge files were temporarily disabled and automatically restored afterwards.
+
+A full v0.1.9 release baseline still requires the existing 38 regressions to be rerun against runtime v0.1.9.
 
 ## Local regression — v0.1.8 hardening recheck
 
@@ -72,19 +74,21 @@ Confirmed **9/9 on 2026-08-19**.
 | ACL-008 | Crafted edit denied | Direct/crafted save cannot mutate an assignment without core.edit | PASS |
 | ACL-009 | Crafted delete denied | Direct list-task submission cannot delete an assignment without core.delete | PASS |
 
-## Planned local regression — runtime v0.1.9 native JEM hook POC
+## Local regression — runtime v0.1.9 native JEM hook POC
 
 The local JEM event view contains the proposed `onJemPrepareEventView` trigger immediately before template rendering. Runtime v0.1.9 subscribes through Joomla's `SubscriberInterface`, extracts the JEM view from the Event arguments and applies `fullimage_layout = header` only for the resolved `modern + hero` assignment of the same event.
 
-The POC deliberately disables only files carrying the exact `JEM Presentation Thin Override Bridge` marker during the run and restores them afterwards. This proves whether Hero can work through the native hook without a template override.
+The POC deliberately disabled only files carrying the exact `JEM Presentation Thin Override Bridge` marker during the run and restored them afterwards. This proves Hero can work through the native hook without a template override.
+
+Confirmed **5/5 on 2026-08-19**.
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| HOOK-001 | Bridge-free precondition | Cassiopeia Thin Override Bridge is absent during the POC | PENDING |
-| HOOK-002 | Standard isolation | Standard keeps native right-image markup and receives no Hero hook mutation | PENDING |
-| HOOK-003 | Native Hero | Hero emits native hook debug evidence and renders the JEM header image without the bridge | PENDING |
-| HOOK-004 | Two Column isolation | Two Column keeps native 900px two-column behaviour and receives no Hero hook mutation | PENDING |
-| HOOK-005 | Hero preservation/mobile | Native Hero stays contained at 390px and preserves JEM toolbar, registration and online-meeting contracts | PENDING |
+| HOOK-001 | Bridge-free precondition | Cassiopeia Thin Override Bridge is absent during the POC | PASS |
+| HOOK-002 | Standard isolation | Standard keeps native right-image markup and receives no Hero hook mutation | PASS |
+| HOOK-003 | Native Hero | Hero emits native hook debug evidence and renders the JEM header image without the bridge | PASS |
+| HOOK-004 | Two Column isolation | Two Column keeps native 900px two-column behaviour and receives no Hero hook mutation | PASS |
+| HOOK-005 | Hero preservation/mobile | Native Hero stays contained at 390px and preserves JEM toolbar, registration and online-meeting contracts | PASS |
 
 ## Regression history
 
@@ -95,7 +99,7 @@ The POC deliberately disables only files carrying the exact `JEM Presentation Th
 - Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer.
 - The first v0.1.8 ACL run exposed a local Playwright helper mismatch: Joomla 6.1.2 persisted permission-select changes through `com_config&task=application.store&format=json`, while the helper waited for a `permissions.apply` response. The trace showed successful HTTP 200 ACL store calls. The helper was corrected; JEM Presentation production code was unchanged. The corrected ACL regression then passed 9/9 on 2026-08-19.
 - The existing 29 management/runtime, frontend and hardening regressions were rerun unchanged against the installed v0.1.8 component and all passed on 2026-08-19, establishing the complete 38/38 v0.1.8 release baseline.
-- Runtime v0.1.9 adds a subscriber for the proposed local JEM `onJemPrepareEventView` extension point. The bridge-free five-test POC is pending and must pass before this is treated as a replacement for the Thin Override Bridge.
+- Runtime v0.1.9 adds a subscriber for the proposed local JEM `onJemPrepareEventView` extension point. The dedicated bridge-free POC passed 5/5 on 2026-08-19. Both Cassiopeia Thin Override Bridge files were absent during the tests and restored afterwards. Hero therefore no longer requires the bridge when the native JEM hook is available.
 
 ## Repository policy
 
