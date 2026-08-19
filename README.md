@@ -7,8 +7,8 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 ## Current source baseline
 
 - `com_jempresentation` **0.1.8** — management hardening plus native Joomla ACL configuration
-- `plg_system_jempresentationruntime` **0.1.9** — runtime resolver/assets plus native `onJemPrepareEventView` Hero-hook POC
-- Cassiopeia Thin Override Bridge **0.1.0** — optional Hero compatibility fallback; bridge-free native-hook validation pending
+- `plg_system_jempresentationruntime` **0.1.9** — runtime resolver/assets plus native `onJemPrepareEventView` Hero-hook support
+- Cassiopeia Thin Override Bridge **0.1.0** — compatibility fallback for JEM installations without the native event-view hook
 
 ## Principles
 
@@ -17,7 +17,7 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 - Events without an assignment retain normal JEM output.
 - CSS/layout is preferred where existing JEM markup is sufficient.
 - Compatibility overrides are minimal, opt-in and never overwrite user overrides automatically.
-- A native JEM event-view presentation hook should replace the Hero bridge when available.
+- When JEM exposes the native event-view presentation hook, Hero no longer requires a template override.
 
 ## Current registry
 
@@ -31,6 +31,8 @@ The component uses Joomla component permissions for `core.admin`, `core.manage`,
 
 ## Validation status
 
-The latest fully confirmed local release baseline is **component v0.1.8 + runtime v0.1.8: 38/38 passed**. Runtime v0.1.9 adds the native JEM event-view hook listener and remains **POC / pending local bridge-free validation**.
+The latest fully confirmed release baseline remains **component v0.1.8 + runtime v0.1.8: 38/38 passed**. Runtime v0.1.9 additionally completed the dedicated **bridge-free native-hook POC: 5/5 passed** on 2026-08-19 with both Cassiopeia Thin Override Bridge files disabled during the run and restored afterwards.
+
+A full runtime v0.1.9 release baseline still requires the existing 38 regressions to be rerun against v0.1.9.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
