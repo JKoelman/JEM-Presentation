@@ -35,8 +35,8 @@ Component v0.1.9 inspects `components/com_jem/views/event/view.html.php` for a r
 
 ## Validation status
 
-The latest fully confirmed release baseline before the component v0.1.9 change is **component v0.1.8 + runtime v0.1.9: 38/38 passed** on 2026-08-19.
+The latest fully confirmed normal release baseline remains **component v0.1.8 + runtime v0.1.9: 38/38 passed** on 2026-08-19.
 
-Runtime v0.1.9 also completed the dedicated **bridge-free native-hook POC: 5/5 passed**. Component v0.1.9 integration diagnostics are pending their dedicated local regression before this source baseline is promoted to the confirmed release baseline.
+Runtime v0.1.9 also completed the dedicated **bridge-free native-hook POC: 5/5 passed**. Component v0.1.9 Integration Status diagnostics completed their dedicated **5/5 local regression** on 2026-08-19. The existing 38 release regressions still need to be rerun against component v0.1.9 + runtime v0.1.9 before that pair becomes the fully confirmed release baseline.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
