@@ -83,6 +83,7 @@ final class IntegrationStatus
         if (!is_file($file)) {
             return $base + [
                 'state' => 'not-detected',
+                'role' => 'unavailable',
                 'label' => Text::_('COM_JEMPRESENTATION_NATIVE_API_NOT_DETECTED'),
                 'help' => Text::_('COM_JEMPRESENTATION_NATIVE_API_NOT_DETECTED_DESC'),
             ];
@@ -93,6 +94,7 @@ final class IntegrationStatus
         if (!is_string($contents)) {
             return $base + [
                 'state' => 'unknown',
+                'role' => 'unknown',
                 'label' => Text::_('COM_JEMPRESENTATION_STATUS_UNKNOWN'),
                 'help' => Text::_('COM_JEMPRESENTATION_NATIVE_API_READ_ERROR_DESC'),
             ];
@@ -104,6 +106,7 @@ final class IntegrationStatus
         if ($detected) {
             return $base + [
                 'state' => 'detected',
+                'role' => 'preferred',
                 'label' => Text::_('COM_JEMPRESENTATION_NATIVE_API_DETECTED'),
                 'help' => Text::_('COM_JEMPRESENTATION_NATIVE_API_DETECTED_DESC'),
             ];
@@ -111,6 +114,7 @@ final class IntegrationStatus
 
         return $base + [
             'state' => 'not-detected',
+            'role' => 'unavailable',
             'label' => Text::_('COM_JEMPRESENTATION_NATIVE_API_NOT_DETECTED'),
             'help' => Text::_('COM_JEMPRESENTATION_NATIVE_API_NOT_DETECTED_DESC'),
         ];
@@ -121,6 +125,7 @@ final class IntegrationStatus
         if ($template === '') {
             return [
                 'state' => 'unknown',
+                'role' => 'unknown',
                 'label' => Text::_('COM_JEMPRESENTATION_STATUS_UNKNOWN'),
                 'files' => [],
             ];
@@ -130,6 +135,7 @@ final class IntegrationStatus
             if ($nativeDetected) {
                 return [
                     'state' => 'not-required',
+                    'role' => 'not-required',
                     'label' => Text::_('COM_JEMPRESENTATION_BRIDGE_NOT_REQUIRED_NATIVE'),
                     'help' => Text::_('COM_JEMPRESENTATION_BRIDGE_NOT_REQUIRED_NATIVE_DESC'),
                     'files' => [],
@@ -138,6 +144,7 @@ final class IntegrationStatus
 
             return [
                 'state' => 'unsupported-template',
+                'role' => 'required',
                 'label' => Text::sprintf('COM_JEMPRESENTATION_BRIDGE_TEMPLATE_UNSUPPORTED', $template),
                 'files' => [],
             ];
@@ -180,6 +187,7 @@ final class IntegrationStatus
         if ($customFiles > 0) {
             return [
                 'state' => 'conflict',
+                'role' => $nativeDetected ? 'fallback' : 'required',
                 'label' => Text::_('COM_JEMPRESENTATION_BRIDGE_CONFLICT'),
                 'help' => $nativeDetected
                     ? Text::_('COM_JEMPRESENTATION_BRIDGE_CONFLICT_NATIVE_DESC')
@@ -191,6 +199,7 @@ final class IntegrationStatus
         if ($bridgeFiles === count($expected)) {
             return [
                 'state' => 'available',
+                'role' => $nativeDetected ? 'fallback' : 'required',
                 'label' => $nativeDetected
                     ? Text::_('COM_JEMPRESENTATION_BRIDGE_AVAILABLE_FALLBACK')
                     : Text::_('COM_JEMPRESENTATION_BRIDGE_AVAILABLE'),
@@ -204,6 +213,7 @@ final class IntegrationStatus
         if ($existing > 0 || $bridgeFiles > 0) {
             return [
                 'state' => 'incomplete',
+                'role' => $nativeDetected ? 'fallback' : 'required',
                 'label' => Text::_('COM_JEMPRESENTATION_BRIDGE_INCOMPLETE'),
                 'help' => $nativeDetected
                     ? Text::_('COM_JEMPRESENTATION_BRIDGE_INCOMPLETE_NATIVE_DESC')
@@ -215,6 +225,7 @@ final class IntegrationStatus
         if ($nativeDetected) {
             return [
                 'state' => 'not-required',
+                'role' => 'not-required',
                 'label' => Text::_('COM_JEMPRESENTATION_BRIDGE_NOT_REQUIRED_NATIVE'),
                 'help' => Text::_('COM_JEMPRESENTATION_BRIDGE_NOT_REQUIRED_NATIVE_DESC'),
                 'files' => $files,
@@ -223,6 +234,7 @@ final class IntegrationStatus
 
         return [
             'state' => 'missing',
+            'role' => 'required',
             'label' => Text::_('COM_JEMPRESENTATION_BRIDGE_MISSING'),
             'files' => $files,
         ];
