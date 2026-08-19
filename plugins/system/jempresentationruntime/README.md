@@ -1,33 +1,26 @@
-# JEM Presentation Runtime v0.1.8
+# JEM Presentation Runtime v0.1.9
 
-## Two Column v0.3 — responsive hardening
+## Native JEM event-view hook POC
 
-Firefox Responsive Design Mode results before this fix:
+Runtime v0.1.9 subscribes to the proposed native JEM event-view hook:
 
-- 1280 × 800: PASS
-- 900 × 800: PASS (two columns)
-- 899 × 800: PASS (single column)
-- 390 × 844: layout collapsed, but JEM responsive CSS could still show the image before the facts
+`onJemPrepareEventView`
 
-The current JEM responsive template itself emits:
+The listener uses Joomla's `SubscriberInterface` event contract, reads the JEM view from the generic Event arguments, and only changes request-local presentation state when all of these are true:
 
-1. `.jem-event-overview-details`
-2. `.jem-event-overview-media`
+- site client
+- Presentation assignment resolved for the same JEM event
+- profile `modern`
+- layout `hero`
 
-so the desired semantic source order is already correct.
+For that case only, it sets:
 
-v0.1.8 explicitly forces the presentation panel to CSS Grid below 900px and
-pins:
-- details to row 1
-- image to row 2
+```php
+$view->item->fullimage_layout = 'header';
+```
 
-with sufficient specificity/`!important` to survive JEM's later responsive CSS.
+Standard and Two Column are not mutated by the hook.
 
-## Retest
+The runtime emits a debug message containing `onJemPrepareEventView` when `jempresentation_debug=1` and the Hero hook is actually applied. This is intended for the local bridge-free POC.
 
-Only:
-- 899 × 800
-- 390 × 844
-
-Expected:
-facts first, image second, no horizontal overflow.
+The previously confirmed responsive Two Column behaviour remains unchanged: 900px is two columns, 899px and below stack details before media.
