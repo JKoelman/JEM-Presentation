@@ -6,19 +6,19 @@ This file records public regression coverage and locally confirmed results. The 
 
 | Part | Version | Purpose |
 |---|---:|---|
-| `com_jempresentation` | 0.1.9 | Management/ACL hardening plus native JEM hook and bridge-fallback diagnostics |
+| `com_jempresentation` | 0.1.10 | Management/ACL hardening plus adaptive native-first Hero integration metadata |
 | `plg_system_jempresentationruntime` | 0.1.9 | Event resolver/assets plus native `onJemPrepareEventView` Hero-hook support |
-| Cassiopeia Thin Override Bridge | 0.1.0 | Compatibility fallback; no longer technically required when the native JEM hook is present |
+| Cassiopeia Thin Override Bridge | 0.1.0 | Compatibility fallback for JEM installations without the native event-view hook |
 
 ## Latest confirmed local baseline
 
-The current fully confirmed normal release baseline is **component v0.1.9 + runtime v0.1.9**.
+The latest fully confirmed normal release baseline remains **component v0.1.9 + runtime v0.1.9**.
 
 - 2026-08-19: management/runtime + frontend + hardening + ACL recheck — **38 passed**, 1 worker, 4.9 minutes.
 - 2026-08-19: component v0.1.9 Integration Status regression — **5 passed**, 1 worker, 20.0 seconds.
 - 2026-08-19: bridge-free runtime v0.1.9 native-hook POC — **5 passed**.
 
-The 38-test release regression confirms that the v0.1.9 component diagnostics did not regress existing management, runtime, frontend, hardening or ACL behavior. The separate 5-test native-hook POC confirms that Hero can operate through the native JEM event-view hook while both Cassiopeia Thin Override Bridge files are absent.
+Component v0.1.10 is the current source baseline. It changes only the management metadata/labels for Hero and remains **PENDING** its dedicated adaptive-registry regression before the confirmed baseline is promoted.
 
 ## Normal release regression — component v0.1.9 + runtime v0.1.9
 
@@ -32,40 +32,19 @@ The existing suite names retain their historical version labels, but the complet
 | ACL configuration / enforcement | 9 | Permissions UI, `core.manage` boundary, create/edit/delete authorization and crafted-task denial | PASS 9/9 |
 | **Total** | **38** | **Normal release regression baseline** | **PASS 38/38** |
 
-### Frontend contract retained
+## Planned component v0.1.10 adaptive Hero regression
 
-- Standard retains JEM right-image markup and the native event toolbar.
-- Two Column renders as two columns at 900 px and stacks details above media below the 899.98 px breakpoint.
-- Hero remains contained on mobile and preserves the same JEM functional core contract.
-- JEM details/compact toggle remains functional.
-- Standard, Hero and Two Column preserve toolbar, online-meeting action and registration/attendee visibility behavior.
+Version 0.1.10 makes Hero environment-aware without changing its stored canonical ID. The same registry feeds both the assignment editor and the assignment list.
 
-### Hardening contract retained
+| ID | Test | Expected | Local result |
+|---|---|---|---|
+| ADAPT-001 | Hero native-first metadata | With native JEM hook detected, Hero publishes `data-integration=native-hook` | PENDING |
+| ADAPT-002 | Hero bridge role | With native hook detected, Hero publishes `data-bridge-role=fallback`, not required | PENDING |
+| ADAPT-003 | Hero confirmed status | Hero is `confirmed` rather than `poc` while keeping canonical layout ID `hero` | PENDING |
+| ADAPT-004 | Standard / Two Column isolation | Standard and Two Column remain `native` with bridge role `none` | PENDING |
+| ADAPT-005 | Layout switching stability | Standard → Hero → Two Column updates only the selected layout metadata and keeps Integration Status healthy | PENDING |
 
-| ID | Test | Local result |
-|---|---|---|
-| HARD-001 | Registry capabilities and planned choices | PASS |
-| HARD-002 | Assigned event selector state | PASS |
-| HARD-003 | Crafted duplicate-new save reuses existing assignment | PASS |
-| HARD-004 | Unknown profile rejected server-side | PASS |
-| HARD-005 | Unsupported profile/layout combination rejected | PASS |
-| HARD-006 | Missing JEM event rejected | PASS |
-| HARD-007 | Removed JEM event remains visible as orphan assignment | PASS |
-| HARD-008 | Integration diagnostics remain healthy | PASS |
-
-### ACL contract retained
-
-| ID | Test | Local result |
-|---|---|---|
-| ACL-001 | Native Permissions configuration for all five actions | PASS |
-| ACL-002 | `core.manage` Denied dominates direct list/add/edit routes | PASS |
-| ACL-003 | Manage-only toolbar omits New/Edit/Delete/Options as configured | PASS |
-| ACL-004 | `core.create` permits normal add flow | PASS |
-| ACL-005 | `core.edit` permits editing an existing assignment | PASS |
-| ACL-006 | `core.delete` permits deleting a dedicated assignment | PASS |
-| ACL-007 | Crafted create without `core.create` is blocked | PASS |
-| ACL-008 | Crafted edit without `core.edit` is blocked | PASS |
-| ACL-009 | Crafted delete without `core.delete` is blocked | PASS |
+A later normal-release rerun must also update the historical management assertion that previously expected Hero to display `Bridge` in the assignment list; on a hook-capable JEM installation the intended value is now the native JEM event-view hook.
 
 ## Component v0.1.9 Integration Status regression
 
@@ -102,9 +81,10 @@ Confirmed **5/5 on 2026-08-19**.
 With the tested local JEM hook present:
 
 - native `onJemPrepareEventView` is the preferred Hero integration path;
+- Hero's effective management integration is `native-hook`;
 - the Cassiopeia Thin Override Bridge is a compatibility fallback, not a technical requirement;
 - Standard and Two Column remain native and unaffected;
-- JEM remains owner of event data, ACL, registration, attendee behavior and normal rendering;
+- stored assignments remain `profile=modern` plus canonical layout IDs `standard`, `hero`, or `two-column`;
 - JEM Presentation does not install or modify the JEM hook automatically.
 
 ## Regression history
@@ -114,7 +94,8 @@ With the tested local JEM hook present:
 - v0.1.8 completed native Joomla ACL configuration and enforced `core.manage` as the administrator boundary.
 - Runtime v0.1.9 added the `onJemPrepareEventView` subscriber. The dedicated bridge-free POC passed 5/5.
 - Component v0.1.9 added native-hook detection, stable `data-state`/`data-role` diagnostics and bridge-fallback classification. Its dedicated Integration Status regression passed 5/5.
-- The full 38-test normal release regression was rerun against **component v0.1.9 + runtime v0.1.9** and passed **38/38** on 2026-08-19, establishing the current confirmed release baseline.
+- The full 38-test normal release regression was rerun against **component v0.1.9 + runtime v0.1.9** and passed **38/38** on 2026-08-19.
+- Component v0.1.10 changes the Hero registry from static Bridge/POC metadata to adaptive native-first metadata while preserving all canonical assignment values. Its dedicated regression is pending.
 
 ## Repository policy
 
