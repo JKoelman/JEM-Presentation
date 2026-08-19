@@ -25,7 +25,7 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 - `sports`, `outdoor`, `festival` — planned
 - `route` — planned and not selectable for new assignments
 
-Hero now has an adaptive registry contract:
+Hero has an adaptive registry contract:
 
 - native JEM hook detected → `native-hook` + bridge role `fallback`;
 - native JEM hook absent → `bridge` + bridge role `required`.
@@ -38,10 +38,10 @@ The component uses Joomla component permissions for `core.admin`, `core.manage`,
 
 ## Validation status
 
-The latest fully confirmed normal release baseline remains **component v0.1.9 + runtime v0.1.9: 38/38 passed** on 2026-08-19 (1 worker, 4.9 minutes).
+The current fully confirmed normal release baseline is **component v0.1.10 + runtime v0.1.9: 38/38 passed** on 2026-08-20 (1 worker, 5.1 minutes).
 
-Runtime v0.1.9 also completed the dedicated **bridge-free native-hook POC: 5/5 passed**, component v0.1.9 Integration Status completed **5/5**, and component v0.1.10 adaptive Hero metadata completed its dedicated **5/5 regression** on 2026-08-19 (1 worker, 18.2 seconds).
+The v0.1.10 adaptive Hero contract also passed its dedicated **5/5 regression** on 2026-08-19 (1 worker, 18.2 seconds), and the updated management/registry/runtime group passed **13/13** on 2026-08-19 (1 worker, 1.3 minutes). Runtime v0.1.9 additionally retains the confirmed **5/5 bridge-free native-hook POC**, while the Integration Status contract remains confirmed **5/5**.
 
-The normal release baseline will be promoted to component v0.1.10 only after the historical Hero list assertion is aligned with the new native-first contract and the complete 38-test regression is rerun.
+Together these results confirm the adaptive native-first Hero management contract, the runtime native-hook path, bridge fallback compatibility, and the complete normal regression baseline.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
