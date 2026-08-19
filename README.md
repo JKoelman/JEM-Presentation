@@ -31,8 +31,8 @@ The component uses Joomla component permissions for `core.admin`, `core.manage`,
 
 ## Validation status
 
-The latest fully confirmed release baseline remains **component v0.1.8 + runtime v0.1.8: 38/38 passed**. Runtime v0.1.9 additionally completed the dedicated **bridge-free native-hook POC: 5/5 passed** on 2026-08-19 with both Cassiopeia Thin Override Bridge files disabled during the run and restored afterwards.
+The current fully confirmed release baseline is **component v0.1.8 + runtime v0.1.9: 38/38 passed** on 2026-08-19.
 
-A full runtime v0.1.9 release baseline still requires the existing 38 regressions to be rerun against v0.1.9.
+Runtime v0.1.9 additionally completed the dedicated **bridge-free native-hook POC: 5/5 passed** with both Cassiopeia Thin Override Bridge files disabled during the run and restored afterwards. This demonstrates that Hero can use the native JEM event-view hook without requiring a template override.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
