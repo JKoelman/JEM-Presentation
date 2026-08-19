@@ -103,7 +103,7 @@ $statusClass = static function (string $state): string {
                 </div>
                 <div class="card-body">
                     <dl class="jempresentation-status-list mb-0">
-                        <div>
+                        <div data-jempresentation-status="runtime" data-state="<?php echo $this->escape((string) ($this->integrationStatus['runtime']['state'] ?? 'unknown')); ?>">
                             <dt><?php echo Text::_('COM_JEMPRESENTATION_RUNTIME_PLUGIN'); ?></dt>
                             <dd>
                                 <span class="badge text-bg-<?php echo $statusClass((string) ($this->integrationStatus['runtime']['state'] ?? 'unknown')); ?>">
@@ -115,7 +115,7 @@ $statusClass = static function (string $state): string {
                             <dt><?php echo Text::_('COM_JEMPRESENTATION_DEFAULT_SITE_TEMPLATE'); ?></dt>
                             <dd><?php echo $this->escape((string) ($this->integrationStatus['template']['label'] ?? Text::_('COM_JEMPRESENTATION_STATUS_UNKNOWN'))); ?></dd>
                         </div>
-                        <div>
+                        <div data-jempresentation-status="bridge" data-state="<?php echo $this->escape((string) ($this->integrationStatus['bridge']['state'] ?? 'unknown')); ?>" data-role="<?php echo $this->escape((string) ($this->integrationStatus['bridge']['role'] ?? 'unknown')); ?>">
                             <dt><?php echo Text::_('COM_JEMPRESENTATION_HERO_BRIDGE'); ?></dt>
                             <dd>
                                 <span class="badge text-bg-<?php echo $statusClass((string) ($this->integrationStatus['bridge']['state'] ?? 'unknown')); ?>">
@@ -136,7 +136,7 @@ $statusClass = static function (string $state): string {
                                 <?php endif; ?>
                             </dd>
                         </div>
-                        <div>
+                        <div data-jempresentation-status="native-api" data-state="<?php echo $this->escape((string) ($this->integrationStatus['native_api']['state'] ?? 'unknown')); ?>" data-role="<?php echo $this->escape((string) ($this->integrationStatus['native_api']['role'] ?? 'unknown')); ?>">
                             <dt><?php echo Text::_('COM_JEMPRESENTATION_NATIVE_JEM_API'); ?></dt>
                             <dd>
                                 <span class="badge text-bg-<?php echo $statusClass((string) ($this->integrationStatus['native_api']['state'] ?? 'unknown')); ?>">
