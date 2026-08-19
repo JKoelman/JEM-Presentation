@@ -29,4 +29,8 @@ No migration of existing assignments is required.
 
 ## Validation status
 
-The last fully confirmed baseline before this source change is component v0.1.9 + runtime v0.1.9 with **38/38** normal regressions passing, plus **5/5** Integration Status and **5/5** bridge-free native-hook POC. Version 0.1.10 requires its dedicated adaptive-registry regression before promotion.
+Component v0.1.10 adaptive Hero metadata passed its dedicated **5/5** regression on 2026-08-19 (1 worker, 18.2 seconds). After aligning the historical Hero assignment-list assertion with the stable `data-jempresentation-integration="native-hook"` contract, the management/registry/runtime group passed **13/13** on 2026-08-19 (1 worker, 1.3 minutes).
+
+The complete normal release regression was then rerun against **component v0.1.10 + runtime v0.1.9** and passed **38/38** on 2026-08-20 (1 worker, 5.1 minutes). This establishes v0.1.10 as the current fully confirmed component baseline.
+
+The previously confirmed **5/5 Integration Status** regression and **5/5 bridge-free native-hook POC** remain part of the supporting integration evidence.
