@@ -19,7 +19,7 @@ The latest fully confirmed release baseline remains **component v0.1.8 + runtime
 
 In addition, runtime v0.1.9 with a local JEM `onJemPrepareEventView` trigger completed the dedicated **bridge-free native-hook POC: 5/5 passed** on 2026-08-19. During that run both Cassiopeia Thin Override Bridge files were temporarily disabled and automatically restored afterwards.
 
-Component v0.1.9 adds native-hook/bridge-fallback diagnostics and is **PENDING** its dedicated local Integration Status regression. The 38/38 baseline is not promoted to component v0.1.9 until that change and the existing regressions are locally confirmed.
+Component v0.1.9 native-hook/bridge-fallback diagnostics completed their dedicated **Integration Status regression: 5/5 passed**, 1 worker, 20.0 seconds, on 2026-08-19. The 38/38 baseline is not promoted to component v0.1.9 until the existing release regressions are rerun against component v0.1.9 + runtime v0.1.9.
 
 ## Local regression — v0.1.8 hardening recheck on runtime v0.1.9
 
@@ -89,17 +89,19 @@ Confirmed **5/5 on 2026-08-19**.
 | HOOK-004 | Two Column isolation | Two Column keeps native 900px two-column behaviour and receives no Hero hook mutation | PASS |
 | HOOK-005 | Hero preservation/mobile | Native Hero stays contained at 390px and preserves JEM toolbar, registration and online-meeting contracts | PASS |
 
-## Planned local regression — component v0.1.9 Integration Status
+## Local regression — component v0.1.9 Integration Status
 
 Component v0.1.9 detects a real `triggerEvent('onJemPrepareEventView', ...)` call in the JEM event view, exposes stable status/role markers in the administrator UI, and treats the Thin Override Bridge as a compatibility fallback when the native hook exists.
 
+Confirmed **5/5 on 2026-08-19**, 1 worker, 20.0 seconds.
+
 | ID | Test | Expected | Local result |
 |---|---|---|---|
-| INT-001 | Component/runtime status health | Assignment edit opens without technical error; runtime status remains active | PENDING |
-| INT-002 | Native hook detection | Native API row reports `data-state=detected` and `data-role=preferred` | PENDING |
-| INT-003 | Auditable hook source | Native API diagnostics expose `components/com_jem/views/event/view.html.php` | PENDING |
-| INT-004 | Bridge fallback classification | With the restored Cassiopeia bridge present, bridge reports `data-state=available` and `data-role=fallback` while retaining both bridge file diagnostics | PENDING |
-| INT-005 | Status stability across layout selection | Switching Standard/Hero/Two Column does not mutate environment-level native/bridge diagnostics or produce a technical error | PENDING |
+| INT-001 | Component/runtime status health | Assignment edit opens without technical error; runtime status remains active | PASS |
+| INT-002 | Native hook detection | Native API row reports `data-state=detected` and `data-role=preferred` | PASS |
+| INT-003 | Auditable hook source | Native API diagnostics expose `components/com_jem/views/event/view.html.php` | PASS |
+| INT-004 | Bridge fallback classification | With the restored Cassiopeia bridge present, bridge reports `data-state=available` and `data-role=fallback` while retaining both bridge file diagnostics | PASS |
+| INT-005 | Status stability across layout selection | Switching Standard/Hero/Two Column does not mutate environment-level native/bridge diagnostics or produce a technical error | PASS |
 
 ## Regression history
 
@@ -112,7 +114,7 @@ Component v0.1.9 detects a real `triggerEvent('onJemPrepareEventView', ...)` cal
 - Component v0.1.8 + runtime v0.1.8 established a complete 38/38 release baseline on 2026-08-19.
 - Runtime v0.1.9 adds a subscriber for the proposed local JEM `onJemPrepareEventView` extension point. The dedicated bridge-free POC passed 5/5 on 2026-08-19. Both Cassiopeia Thin Override Bridge files were absent during the tests and restored afterwards. Hero therefore no longer requires the bridge when the native JEM hook is available.
 - The complete 38-test management/runtime, frontend, hardening and ACL regression set was then rerun against component v0.1.8 + runtime v0.1.9 and passed 38/38 on 2026-08-19, establishing runtime v0.1.9 as the current fully confirmed release baseline.
-- Component v0.1.9 adds native-hook detection and bridge-fallback classification in Integration Status. Its dedicated five-test local regression is pending before the component baseline is promoted from v0.1.8 to v0.1.9.
+- Component v0.1.9 adds native-hook detection and bridge-fallback classification in Integration Status. Its dedicated five-test local regression passed 5/5 on 2026-08-19; the existing 38 release regressions still need to be rerun before component v0.1.9 becomes the fully confirmed release baseline.
 
 ## Repository policy
 
