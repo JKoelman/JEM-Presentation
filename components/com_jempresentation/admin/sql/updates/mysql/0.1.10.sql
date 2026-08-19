@@ -1,0 +1,2 @@
+-- JEM Presentation 0.1.10
+-- Adaptive Hero integration metadata only; no database schema changes.
