@@ -12,17 +12,16 @@ This file records public regression coverage and locally confirmed results. The 
 
 ## Latest confirmed local baseline
 
-The latest fully confirmed release baseline remains **component v0.1.8 + runtime v0.1.8**:
+The current fully confirmed release baseline is **component v0.1.8 + runtime v0.1.9**:
 
-- 2026-08-19: management/runtime + frontend + hardening recheck — **29 passed**, 1 worker, 4.6 minutes.
-- 2026-08-19: ACL configuration + enforcement regression — **9 passed**, 1 worker, 2.6 minutes.
-- Combined confirmed v0.1.8 release baseline: **38/38 passed**.
+- 2026-08-19: management/runtime + frontend + hardening + ACL recheck — **38 passed**, 1 worker, 4.9 minutes.
+- Combined normal release regression baseline: **38/38 passed**.
 
 In addition, runtime v0.1.9 with a local JEM `onJemPrepareEventView` trigger completed the dedicated **bridge-free native-hook POC: 5/5 passed** on 2026-08-19. During that run both Cassiopeia Thin Override Bridge files were temporarily disabled and automatically restored afterwards.
 
-A full v0.1.9 release baseline still requires the existing 38 regressions to be rerun against runtime v0.1.9.
+This establishes both the normal runtime v0.1.9 regression baseline and the separate proof that Hero can operate through the native JEM hook without the template bridge.
 
-## Local regression — v0.1.8 hardening recheck
+## Local regression — v0.1.8 hardening recheck on runtime v0.1.9
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
@@ -35,13 +34,13 @@ A full v0.1.9 release baseline still requires the existing 38 regressions to be 
 | HARD-007 | Orphan assignment | Deleted JEM event leaves explicit warning row and retained assignment | PASS |
 | HARD-008 | Integration diagnostics | Default site template label + per-file Hero bridge states | PASS |
 
-Confirmed 8/8 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19.
+Confirmed 8/8 again with component v0.1.8 + runtime v0.1.9 as part of the 38-test release recheck on 2026-08-19.
 
-## Local regression — v0.1.8 management + runtime recheck
+## Local regression — v0.1.8 management + runtime recheck on runtime v0.1.9
 
-Confirmed 13/13 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
+Confirmed 13/13 again with component v0.1.8 + runtime v0.1.9 as part of the 38-test release recheck on 2026-08-19. Coverage includes assignment list health, canonical Modern/Standard values, Standard/Hero/Two Column registry metadata and previews, planned Sports/Route visibility without selection, duplicate prevention, integration status, runtime asset isolation, and no Presentation assets on an unassigned event.
 
-## Local regression — v0.1.8 frontend layout recheck
+## Local regression — v0.1.8 frontend layout recheck on runtime v0.1.9
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
@@ -54,13 +53,13 @@ Confirmed 13/13 again on v0.1.8 as part of the 29-test release recheck on 2026-0
 | FRONT-007 | Hero at 390 px | Header image or fallback media remains contained on mobile | PASS |
 | FRONT-008 | Functional preservation | Standard/Hero/Two Column preserve JEM toolbar, online-meeting action and the same registration/attendee visibility contract | PASS |
 
-Confirmed 8/8 again on v0.1.8 as part of the 29-test release recheck on 2026-08-19. The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
+Confirmed 8/8 again with component v0.1.8 + runtime v0.1.9 as part of the 38-test release recheck on 2026-08-19. The frontend fixture uses JEM's own administrator UI to create the event, upload/select its image and remove all test data. No direct database or Joomla filesystem mutation is part of the regression workflow.
 
-## Local regression — v0.1.8 ACL configuration and enforcement
+## Local regression — v0.1.8 ACL configuration and enforcement on runtime v0.1.9
 
 Version 0.1.8 completes the missing Joomla ACL configuration layer: the actions declared in `access.xml` are configurable through Component Options, the Options toolbar action requires `core.admin`, and `core.manage` is required for direct component access as well as assignment add/edit/delete authorization.
 
-Confirmed **9/9 on 2026-08-19**.
+Confirmed **9/9 again on 2026-08-19** as part of the 38-test release recheck with runtime v0.1.9.
 
 | ID | Test | Expected | Local result |
 |---|---|---|---|
@@ -98,8 +97,9 @@ Confirmed **5/5 on 2026-08-19**.
 - The first frontend-layout run exposed a fixture mismatch: JEM sanitized/renamed the uploaded event image while the local helper still assigned the unsanitized source filename. The component and runtime were unchanged. The helper was corrected to resolve JEM's canonical stored filename through its own image gallery; the complete frontend layout regression then passed 8/8 on 2026-08-18.
 - Preparing the ACL regression exposed a real component gap in v0.1.7: `access.xml` declared component actions, but `config.xml` did not expose Joomla's Rules field, and the direct administrator/mutation routes did not consistently treat `core.manage` as the component boundary. Version 0.1.8 completes that configuration/enforcement layer.
 - The first v0.1.8 ACL run exposed a local Playwright helper mismatch: Joomla 6.1.2 persisted permission-select changes through `com_config&task=application.store&format=json`, while the helper waited for a `permissions.apply` response. The trace showed successful HTTP 200 ACL store calls. The helper was corrected; JEM Presentation production code was unchanged. The corrected ACL regression then passed 9/9 on 2026-08-19.
-- The existing 29 management/runtime, frontend and hardening regressions were rerun unchanged against the installed v0.1.8 component and all passed on 2026-08-19, establishing the complete 38/38 v0.1.8 release baseline.
+- Component v0.1.8 + runtime v0.1.8 established a complete 38/38 release baseline on 2026-08-19.
 - Runtime v0.1.9 adds a subscriber for the proposed local JEM `onJemPrepareEventView` extension point. The dedicated bridge-free POC passed 5/5 on 2026-08-19. Both Cassiopeia Thin Override Bridge files were absent during the tests and restored afterwards. Hero therefore no longer requires the bridge when the native JEM hook is available.
+- The complete 38-test management/runtime, frontend, hardening and ACL regression set was then rerun against component v0.1.8 + runtime v0.1.9 and passed 38/38 on 2026-08-19, establishing runtime v0.1.9 as the current fully confirmed release baseline.
 
 ## Repository policy
 
