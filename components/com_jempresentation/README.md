@@ -1,36 +1,32 @@
-# JEM Presentation v0.1.9
+# JEM Presentation v0.1.10
 
-Integration diagnostics release for Joomla 6 + JEM 5.0.1. No JEM data ownership changes and no database schema changes.
+Adaptive Hero integration metadata release for Joomla 6 + JEM 5.0.1. No database schema changes and no change to stored assignment IDs or values.
 
-## Added in v0.1.9
+## Added in v0.1.10
 
-- Integration Status detects the proposed native JEM `onJemPrepareEventView` hook in `components/com_jem/views/event/view.html.php`.
-- A detected hook is shown as the preferred integration path for Hero.
-- An installed Cassiopeia Thin Override Bridge is reported as a compatibility fallback when the native hook exists.
-- When the native hook exists and no bridge is installed, Integration Status reports that the bridge is not required.
-- Existing custom or incomplete JEM overrides remain visible as diagnostics instead of being overwritten.
-- The native-hook source path is displayed so the detected integration point is auditable.
+- Hero is no longer statically described as a Bridge-only POC.
+- When JEM exposes `onJemPrepareEventView`, Hero is reported as using the native JEM event-view hook.
+- The Cassiopeia Thin Override Bridge is then reported as a compatibility fallback rather than a requirement.
+- When the native hook is unavailable, Hero automatically reports the compatibility bridge as its active integration route.
+- The assignment editor exposes stable `data-integration` and `data-bridge-role` metadata for the selected layout.
+- The assignment list uses the same environment-aware integration decision as the editor.
+- Hero is promoted from `poc` to `confirmed`; the underlying stored layout ID remains `hero`.
 
-## Existing v0.1.8 ACL hardening retained
+## Existing v0.1.9 diagnostics retained
 
-- Native Joomla Permissions configuration for `core.admin`, `core.manage`, `core.create`, `core.edit` and `core.delete`.
-- `core.manage` remains the administrator boundary for direct component and assignment mutation routes.
-- Assignment validation, duplicate prevention, orphan handling and registry safeguards remain unchanged.
+- Native JEM hook detection remains read-only and auditable.
+- Existing custom or incomplete JEM overrides remain visible and are never overwritten automatically.
+- The runtime plugin remains the component that actually consumes the native hook.
 
-## Current registry
+## Compatibility
 
-- `modern` — available; supports `standard`, `hero`, `two-column`
-- `sports`, `outdoor`, `festival` — planned
-- `route` — planned and not selectable for new assignments
+Stored assignments remain unchanged:
 
-## Integration model
+- profile: `modern`
+- layouts: `standard`, `hero`, `two-column`
 
-- Preferred when available: native JEM `onJemPrepareEventView` hook.
-- Compatibility fallback: Cassiopeia Thin Override Bridge.
-- JEM Presentation never installs or modifies the JEM hook automatically.
+No migration of existing assignments is required.
 
 ## Validation status
 
-Component v0.1.9 + runtime v0.1.9 is the current fully confirmed normal release baseline with **38/38 regressions passing** on 2026-08-19 (1 worker, 4.9 minutes).
-
-The dedicated component v0.1.9 Integration Status regression also passed **5/5** (1 worker, 20.0 seconds), and the separate bridge-free native-hook POC passed **5/5** with both Cassiopeia Thin Override Bridge files disabled during the run and restored afterwards.
+The last fully confirmed baseline before this source change is component v0.1.9 + runtime v0.1.9 with **38/38** normal regressions passing, plus **5/5** Integration Status and **5/5** bridge-free native-hook POC. Version 0.1.10 requires its dedicated adaptive-registry regression before promotion.
