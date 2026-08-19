@@ -2,9 +2,9 @@
 <extension type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_JEMPRESENTATIONRUNTIME</name>
     <author>Koelman Labs</author>
-    <creationDate>2026-08-10</creationDate>
+    <creationDate>2026-08-19</creationDate>
     <license>GNU General Public License version 3 or later</license>
-    <version>0.1.8</version>
+    <version>0.1.9</version>
     <description>PLG_SYSTEM_JEMPRESENTATIONRUNTIME_XML_DESCRIPTION</description>
 
     <namespace path="src">KoelmanLabs\Plugin\System\JemPresentationRuntime</namespace>
