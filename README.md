@@ -7,13 +7,13 @@ JEM Presentation enhances individual JEM event presentation without taking owner
 ## Current source baseline
 
 - `com_jempresentation` **0.1.8** — management hardening plus native Joomla ACL configuration
-- `plg_system_jempresentationruntime` **0.1.8** — runtime resolver and conditional presentation assets
-- Cassiopeia Thin Override Bridge **0.1.0** — optional Hero compatibility fallback
+- `plg_system_jempresentationruntime` **0.1.9** — runtime resolver/assets plus native `onJemPrepareEventView` Hero-hook POC
+- Cassiopeia Thin Override Bridge **0.1.0** — optional Hero compatibility fallback; bridge-free native-hook validation pending
 
 ## Principles
 
 - JEM remains owner of event data and business logic.
-- `com_jem` is not modified by JEM Presentation.
+- JEM Presentation does not own or persist JEM event data.
 - Events without an assignment retain normal JEM output.
 - CSS/layout is preferred where existing JEM markup is sufficient.
 - Compatibility overrides are minimal, opt-in and never overwrite user overrides automatically.
@@ -31,6 +31,6 @@ The component uses Joomla component permissions for `core.admin`, `core.manage`,
 
 ## Validation status
 
-The latest fully confirmed local baseline is component v0.1.7 with **29/29** regression tests passing. The v0.1.8 ACL configuration changes are pending their dedicated restricted-user regression.
+The latest fully confirmed local release baseline is **component v0.1.8 + runtime v0.1.8: 38/38 passed**. Runtime v0.1.9 adds the native JEM event-view hook listener and remains **POC / pending local bridge-free validation**.
 
 See `docs/TEST_MATRIX.md`, `docs/COMPONENT_HARDENING_V0.1.7.md` and `docs/NATIVE_JEM_HOOK_PROPOSAL.md`.
